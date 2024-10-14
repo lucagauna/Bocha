@@ -1,0 +1,196 @@
+# depslib dependency file v1.0
+1728414827 source:c:\users\luka\desktop\diablo\first version\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728414240 c:\users\luka\desktop\diablo\first version\jugador.h
+	<iostream>
+
+1728414581 source:c:\users\luka\desktop\diablo\first version\main.cpp
+	<iostream>
+	"funciones.h"
+	"jugador.h"
+
+1728407496 c:\users\luka\desktop\diablo\first version\funciones.h
+	<iostream>
+
+1728419825 source:c:\users\luka\desktop\diablo\bocha\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728419819 c:\users\luka\desktop\diablo\bocha\jugador.h
+	<iostream>
+
+1728419823 source:c:\users\luka\desktop\diablo\bocha\main.cpp
+	<iostream>
+	"jugador.h"
+	"equipos.h"
+
+1728407496 c:\users\luka\desktop\diablo\bocha\funciones.h
+	<iostream>
+
+1728419818 c:\users\luka\desktop\diablo\bocha\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728417893 source:c:\users\luka\desktop\diablo\bocha\equipos.cpp
+	"equipos.h"
+	"jugador.h"
+
+1728473935 source:c:\users\luka\desktop\diablo\bocha 0.1v\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728419819 c:\users\luka\desktop\diablo\bocha 0.1v\jugador.h
+	<iostream>
+
+1728473957 source:c:\users\luka\desktop\diablo\bocha 0.1v\main.cpp
+	<iostream>
+	"jugador.h"
+	"equipos.h"
+
+1728474141 c:\users\luka\desktop\diablo\bocha 0.1v\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728473781 source:c:\users\luka\desktop\diablo\bocha 0.1v\equipos.cpp
+	"equipos.h"
+	<iostream>
+
+1728485789 source:c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.2v\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+1728485618 c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.2v\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728480423 c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.2v\jugador.h
+	<iostream>
+
+1728473935 source:c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.2v\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728480423 source:c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.2v\main.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1728407496 c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.2v\funciones.h
+	<iostream>
+
+1728574809 source:c:\users\luka\desktop\diablo\bocha 0.3v\main.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1728569978 c:\users\luka\desktop\diablo\bocha 0.3v\funciones.h
+	<iostream>
+
+1728569323 c:\users\luka\desktop\diablo\bocha 0.3v\jugador.h
+	<iostream>
+
+1728574626 c:\users\luka\desktop\diablo\bocha 0.3v\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728574921 source:c:\users\luka\desktop\diablo\bocha 0.3v\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+1728573275 source:c:\users\luka\desktop\diablo\bocha 0.3v\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728580814 source:c:\users\luka\desktop\diablo\bocha 0.4v\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+1728580814 c:\users\luka\desktop\diablo\bocha 0.4v\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728569323 c:\users\luka\desktop\diablo\bocha 0.4v\jugador.h
+	<iostream>
+
+1728573275 source:c:\users\luka\desktop\diablo\bocha 0.4v\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728580255 source:c:\users\luka\desktop\diablo\bocha 0.4v\main.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1728579031 c:\users\luka\desktop\diablo\bocha 0.4v\funciones.h
+	<iostream>
+
+1728662657 source:c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.4v\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+1728656084 c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.4v\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728569323 c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.4v\jugador.h
+	<iostream>
+
+1728573275 source:c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.4v\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728662717 source:c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.4v\main.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1728579031 c:\users\facuc\desktop\programacion\2do cuatri\programacion\proyectos\tp.inte\bocha 0.4v\funciones.h
+	<iostream>
+
+1728662657 source:c:\users\luka\desktop\bocha\bocha 0.5v\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+1728656084 c:\users\luka\desktop\bocha\bocha 0.5v\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728569323 c:\users\luka\desktop\bocha\bocha 0.5v\jugador.h
+	<iostream>
+
+1728573275 source:c:\users\luka\desktop\bocha\bocha 0.5v\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1728662767 source:c:\users\luka\desktop\bocha\bocha 0.5v\main.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1728662811 c:\users\luka\desktop\bocha\bocha 0.5v\funciones.h
+	<iostream>
+
