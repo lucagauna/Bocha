@@ -10,9 +10,9 @@ int main() {
     mostrarMenu();
     Equipo club;
     archivoEquipo reg("Equipos.dat");
-    //club.cargar();
-    //reg.agregarRegistro(club);
-    reg.eliminarRegistro("Boca Juniors");
+    club.cargar();
+    reg.agregarRegistro(club);
+    //reg.eliminarRegistro("Boca Juniors");
     //reg.modificarRegistro(club);
     reg.mostrarRegistro();
 
