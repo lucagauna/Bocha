@@ -45,9 +45,9 @@ void Equipo::mostrarEquipo() const {
     }
 }
 
-/*Equipo::~Equipo(){
+Equipo::~Equipo(){
     delete[] jugadores;
-}*/
+}
 
 archivoEquipo::archivoEquipo(const char* nombre="Equipos.dat"){
     strcpy(this->nombre, nombre);
@@ -59,18 +59,20 @@ bool archivoEquipo::agregarRegistro(Equipo reg){
     int escribio;
     char jugador[50]={0};
     char name[50]={0};
-    punteroFile=fopen(nombre,"ab");
+    int plantel;
+    punteroFile=fopen(nombre,"ab+");
     if(punteroFile==nullptr){return 0;}
-    while(fread(&lista,sizeof(Equipo),1,punteroFile)==1){ /// ARREGLAR >:V
-        if(lista.getNombre()==reg.getNombre()){
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        if (strcmp(name, reg.getNombre().c_str()) == 0){
             cout<< "Equipo ya ingresado..."  <<endl;
+            fclose(punteroFile);
             return 0;
         }
     }
     strncpy(name, reg.getNombre().c_str(), 49);
     name[49]='\0';
     escribio=fwrite(name,sizeof(char),50,punteroFile);
-    int plantel= reg.getPlantel();
+    plantel= reg.getPlantel();
     escribio=fwrite(&plantel,sizeof(int),1,punteroFile);
     for(int i=0; i<reg.getPlantel(); i++){
         strncpy(jugador, reg.getJugador(i).c_str(), 49);

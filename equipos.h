@@ -27,7 +27,7 @@ public:
     void setPlantel(int plantel);
     void mostrarEquipo() const;
 
-    //~Equipo();
+    ~Equipo();
 };
 
 
