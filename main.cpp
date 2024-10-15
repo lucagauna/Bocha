@@ -4,6 +4,13 @@
 #include "jugador.h"
 #include "equipos.h"
 
+
+/// MODO DE BUSQUEDA ============
+/// BUSCAR ARCHIVO JUGADORES ========
+/// BUSCAR EQUIPO ======
+/// STATS EQUIPOS ======
+///
+
 using namespace std;
 
 int main() {

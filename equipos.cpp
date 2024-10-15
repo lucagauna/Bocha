@@ -61,7 +61,7 @@ bool archivoEquipo::agregarRegistro(Equipo reg){
     char name[50]={0};
     punteroFile=fopen(nombre,"ab");
     if(punteroFile==nullptr){return 0;}
-    while(fread(&lista,sizeof(Equipo),1,punteroFile)==1){
+    while(fread(&lista,sizeof(Equipo),1,punteroFile)==1){ /// ARREGLAR >:V
         if(lista.getNombre()==reg.getNombre()){
             cout<< "Equipo ya ingresado..."  <<endl;
             return 0;
