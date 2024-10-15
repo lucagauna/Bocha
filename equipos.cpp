@@ -224,3 +224,17 @@ Equipo archivoEquipo::listarRegistro(int pos){
     fclose(punteroFile);
     return reg;
 }
+
+Equipo archivoEquipo::buscarRegistro(char* nombreBuscado){
+    FILE* punteroFile;
+    Equipo reg;
+    char nombreEquipo[50] = {0};
+    char jugador[50] = {0};
+    int plantel;
+
+    punteroFile = fopen(nombre,"rb");
+    if (punteroFile == nullptr){return 0;}
+
+
+
+}

@@ -40,6 +40,7 @@ public:
     bool agregarRegistro(Equipo reg);
     bool eliminarRegistro(char* club);
     bool modificarRegistro(Equipo club);
+    bool buscarRegistro(Equipo club);
     bool mostrarRegistro();
     Equipo listarRegistro(int pos);
 
