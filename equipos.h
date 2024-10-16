@@ -27,7 +27,7 @@ public:
     void setPlantel(int plantel);
     void mostrarEquipo() const;
 
-    ~Equipo();
+    //~Equipo();
 };
 
 
@@ -42,6 +42,7 @@ public:
     bool modificarRegistro(Equipo club);
     bool mostrarRegistro();
     Equipo listarRegistro(int pos);
+
 
 };
 

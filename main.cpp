@@ -18,13 +18,8 @@ int main() {
     Equipo club;
     archivoEquipo reg("Equipos.dat");
     club.cargar();
-    reg.agregarRegistro(club);
-    //reg.eliminarRegistro("Boca Juniors");
-    //reg.modificarRegistro(club);
+    //reg.agregarRegistro(club);
+    //reg.eliminarRegistro("River Plate");
+    reg.modificarRegistro(club); ///ARREGLAR!!!!!!!
     reg.mostrarRegistro();
-
-
-    //Revisar Vector Dinamico...
-    //Revisar si se puede simplificar declarando chars...
-    return 0;
 }
