@@ -161,10 +161,12 @@ bool archivoEquipo::modificarRegistro(Equipo club){
             fwrite(&plantel,sizeof(int),1,punteroTemp);
             for(int i=0; i<plantel; i++){
                 strncpy(jugador, club.getJugador(i).c_str(),49);
-                name[49]='\0';
+                jugador[49]='\0';
                 fwrite(&jugador,sizeof(char),50,punteroTemp);
-            }
 
+            }
+            fread(&plantel, sizeof(int), 1, punteroFile);
+            fseek(punteroFile, plantel * sizeof(char) * 50, SEEK_CUR);
         }
 
 
