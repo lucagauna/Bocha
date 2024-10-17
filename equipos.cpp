@@ -231,3 +231,48 @@ Equipo archivoEquipo::listarRegistro(int pos){
     fclose(punteroFile);
     return reg;
 }
+<<<<<<< Updated upstream
+=======
+
+bool  archivoEquipo::buscarRegistro(){
+    FILE* punteroFile;
+    Equipo reg;
+    char nombreEquipo[50] = {0};
+    char jugador[50] = {0};
+    int plantel;
+    char nombreBuscado[50];
+
+    cout << "Ingrese el nombre del equipo a buscar: ";
+    cin.getline(nombreBuscado, 50);
+
+    punteroFile = fopen(nombre,"rb");
+    if (punteroFile == nullptr){return 0;}
+    while(fread(&nombreEquipo,sizeof(char),50, punteroFile)== 50){
+        if(strcmp(nombreEquipo, nombreBuscado)== 0){
+            fread(&plantel, sizeof(int),1,punteroFile);
+            reg.setNombre(nombreEquipo);
+            reg.setPlantel(plantel);
+
+            for(int i = 0; i < plantel; i++){
+                fread(&jugador,sizeof(char), 50,punteroFile);
+                reg.setJugador(i, jugador);
+            }
+                reg.mostrarEquipo();
+                fclose(punteroFile);
+                return true;
+        } else {
+        fread(&plantel,sizeof(int),1,punteroFile );
+        for(int i = 0; i < plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+        }
+    }
+
+
+    }
+
+    cout<<"EQUIPO NO ENCONTRADO..."<<endl;
+    fclose(punteroFile);
+    return false;
+//mogolico
+}
+>>>>>>> Stashed changes
