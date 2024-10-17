@@ -194,3 +194,69 @@
 1728662811 c:\users\luka\desktop\bocha\bocha 0.5v\funciones.h
 	<iostream>
 
+1728946122 ated upstream
+
+1729182929 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+1729176379 shed changes
+	"equipos.h"
+	<iostream>
+	<cstring>
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1729182929 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728946122 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
+	<iostream>
+
+1728946122 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1729184228 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1728946122 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
+	<iostream>
+
+1729005503 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+1729007237 c:\users\luka\desktop\proyecto\bocha\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1728942739 c:\users\luka\desktop\proyecto\bocha\jugador.h
+	<iostream>
+
+1728942739 source:c:\users\luka\desktop\proyecto\bocha\jugador.cpp
+	"jugador.h"
+	<iostream>
+
+1729005541 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"jugador.h"
+	"equipos.h"
+
+1728942739 c:\users\luka\desktop\proyecto\bocha\funciones.h
+	<iostream>
+
