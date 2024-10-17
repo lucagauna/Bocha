@@ -246,17 +246,34 @@
 1728942739 c:\users\luka\desktop\proyecto\bocha\jugador.h
 	<iostream>
 
+<<<<<<< Updated upstream
 1728942739 source:c:\users\luka\desktop\proyecto\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
 
 1729005541 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
+=======
+1729115764 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"jugador.h"
 	"equipos.h"
 
-1728942739 c:\users\luka\desktop\proyecto\bocha\funciones.h
+1729113549 c:\users\luka\desktop\proyecto\bocha\funciones.h
 	<iostream>
 
+<<<<<<< Updated upstream
+=======
+1729115749 c:\users\luka\desktop\proyecto\bocha\equipos.h
+	<iostream>
+	<vector>
+	"jugador.h"
+
+1729115760 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
+	"equipos.h"
+	<iostream>
+	<cstring>
+
+>>>>>>> Stashed changes
