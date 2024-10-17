@@ -234,7 +234,32 @@ Equipo archivoEquipo::buscarRegistro(char* nombreBuscado){
 
     punteroFile = fopen(nombre,"rb");
     if (punteroFile == nullptr){return 0;}
+    while(fread(&nombreEquipo,sizeof(char),50, punteroFile)== 50){
+        if(strcmp(nombreEquipo, nombreBuscado)== 0){
+            fread(&plantel, sizeof(int),1,punteroFile);
+            reg.setNombre(nombreEquipo);
+            reg.setPlantel(plantel);
+
+            for(int i = 0, i < plantel, i++){
+                fread(&jugador,sizeof(char), 50,punteroFile);
+                reg.setJugador(i, jugador);
+            }
+                reg.mostrarEquipo();
+                fclose(punteroFile);
+                return true;
+        } else {
+        fread(&plantel, sizeof(int),punteroFile );
+        for(int i = 0; i < plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+        }
+    }
 
 
+    }
+
+    cout<<"Equipo no encontrado."<<endl;
+    fclose(punteroFile);
+    return false;
 
 }
+
