@@ -17,9 +17,19 @@ int main() {
     mostrarMenu();
     Equipo club;
     archivoEquipo reg("Equipos.dat");
+<<<<<<< Updated upstream
     club.cargar();
     //reg.agregarRegistro(club);
     //reg.eliminarRegistro("River Plate");
     reg.modificarRegistro(club); ///ARREGLAR!!!!!!!
+=======
+    //club = reg.listarRegistro(4);
+    //club.mostrarEquipo();
+    //club.cargar();
+    //reg.agregarRegistro(club);
+    //reg.eliminarRegistro("River Plate");
+    //reg.modificarRegistro(club); ///ARREGLAR!!!!!!!
+    //reg.buscarRegistro();
+>>>>>>> Stashed changes
     reg.mostrarRegistro();
 }
