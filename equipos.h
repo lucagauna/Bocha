@@ -31,11 +31,11 @@ public:
 };
 
 
-class archivoEquipo{
+class ArchivoEquipo{
 private:
     char nombre[50];
 public:
-    archivoEquipo(const char* nombre);
+    ArchivoEquipo(const char* nombre);
 
     bool agregarRegistro(Equipo reg);
     bool eliminarRegistro(char* club);

@@ -16,7 +16,7 @@ using namespace std;
 int main() {
     mostrarMenu();
     Equipo club;
-    archivoEquipo reg("Equipos.dat");
+    ArchivoEquipo reg("Equipos.dat");
     club.cargar();
     reg.agregarRegistro(club);
     //reg.eliminarRegistro("Boca Juniors");

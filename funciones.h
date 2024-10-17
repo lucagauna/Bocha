@@ -7,7 +7,7 @@ using namespace std;
 
 void mostrarMenu() {
     cout << "======================" << endl;
-    cout << "       BOCHA0.5V   "  << endl;
+    cout << "       BOCHA0.6V   "  << endl;
     cout << "======================" << endl;
     cout << "1. EQUIPOS" << endl;
     cout << "2. CAMPEONES DE LIGA" << endl;

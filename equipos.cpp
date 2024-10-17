@@ -49,11 +49,11 @@ void Equipo::mostrarEquipo() const {
     delete[] jugadores;
 }*/
 
-archivoEquipo::archivoEquipo(const char* nombre="Equipos.dat"){
+ArchivoEquipo::ArchivoEquipo(const char* nombre="Equipos.dat"){
     strcpy(this->nombre, nombre);
 }
 
-bool archivoEquipo::agregarRegistro(Equipo reg){
+bool ArchivoEquipo::agregarRegistro(Equipo reg){
     FILE *punteroFile;
     Equipo lista;
     int escribio;
@@ -81,7 +81,7 @@ bool archivoEquipo::agregarRegistro(Equipo reg){
     return escribio; // ELIMINAR VECTOR DINAMICO!!
 }
 
-bool archivoEquipo::eliminarRegistro(char* club){
+bool ArchivoEquipo::eliminarRegistro(char* club){
     FILE *punteroFile, *punteroTemp;
     Equipo reg;
     char name[50]={0};
@@ -127,7 +127,7 @@ bool archivoEquipo::eliminarRegistro(char* club){
     return 1;
 }
 
-bool archivoEquipo::modificarRegistro(Equipo club){
+bool ArchivoEquipo::modificarRegistro(Equipo club){
     FILE *punteroFile, *punteroTemp;
     Equipo reg;
     char name[50]={0};
@@ -179,7 +179,7 @@ bool archivoEquipo::modificarRegistro(Equipo club){
     return 1;
 }
 
-bool archivoEquipo::mostrarRegistro(){
+bool ArchivoEquipo::mostrarRegistro(){
     FILE *punteroFile;
     Equipo reg;
     char name[50]={0};
@@ -200,7 +200,7 @@ bool archivoEquipo::mostrarRegistro(){
     return true;
 }
 
-Equipo archivoEquipo::listarRegistro(int pos){
+Equipo ArchivoEquipo::listarRegistro(int pos){
     FILE* punteroFile;
     Equipo reg;
     char name[50]={0};
