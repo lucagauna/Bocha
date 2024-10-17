@@ -19,23 +19,21 @@ void Equipo::cargar(){
     for(int i=0; i<plantel; i++){
         cout << "Ingrese jugador numero #" << i+1 << ": ";
         getline(cin,jugadores[i]);
-        cout << endl;
     }
-
 }
 
 string Equipo::getNombre(){return nombre;}
 string  Equipo::getJugador(int i){return jugadores[i];}
 int  Equipo::getPlantel(){return plantel;}
 void  Equipo::setNombre(string nombre){this->nombre=nombre;}
+void  Equipo::setJugador(int pos, string jugador){
+    jugadores[pos]=jugador;
+    }
 void  Equipo::setPlantel(int plantel){
     this->plantel=plantel;
     jugadores = new string[plantel];
     if(jugadores==nullptr){return;}
 }
-void  Equipo::setJugador(int pos, string jugador){
-    jugadores[pos]=jugador;
-    }
 
 void Equipo::mostrarEquipo() const {
     cout << "Equipo: " << nombre << endl;
@@ -59,20 +57,18 @@ bool archivoEquipo::agregarRegistro(Equipo reg){
     int escribio;
     char jugador[50]={0};
     char name[50]={0};
-    int plantel;
-    punteroFile=fopen(nombre,"ab+");
+    punteroFile=fopen(nombre,"ab");
     if(punteroFile==nullptr){return 0;}
-    while(fread(&name,sizeof(char),50,punteroFile)==50){
-        if (strcmp(name, reg.getNombre().c_str()) == 0){
+    while(fread(&lista,sizeof(Equipo),1,punteroFile)==1){ /// ARREGLAR >:V
+        if(lista.getNombre()==reg.getNombre()){
             cout<< "Equipo ya ingresado..."  <<endl;
-            fclose(punteroFile);
             return 0;
         }
     }
     strncpy(name, reg.getNombre().c_str(), 49);
     name[49]='\0';
     escribio=fwrite(name,sizeof(char),50,punteroFile);
-    plantel= reg.getPlantel();
+    int plantel= reg.getPlantel();
     escribio=fwrite(&plantel,sizeof(int),1,punteroFile);
     for(int i=0; i<reg.getPlantel(); i++){
         strncpy(jugador, reg.getJugador(i).c_str(), 49);
@@ -130,13 +126,13 @@ bool archivoEquipo::eliminarRegistro(char* club){
 }
 
 bool archivoEquipo::modificarRegistro(Equipo club){
-    FILE *punteroFile, *punteroTemp;
+    FILE *punteroFile,*punteroTemp;
     char name[50]={0};
     char jugador[50]={0};
     int plantel=0;
     bool encontrado=false;
 
-    punteroFile=fopen(nombre, "rb");
+    punteroFile = fopen(nombre, "rb");
     if(punteroFile==nullptr){return 0;}
 
     punteroTemp=fopen("temp.dat", "wb");
@@ -190,16 +186,16 @@ bool archivoEquipo::mostrarRegistro(){
     FILE *punteroFile;
     Equipo reg;
     char name[50]={0};
-    char jugador[50]={0};
-    int plantel;
+    char player[50]={0};
+    int quantity;
     punteroFile = fopen(nombre,"rb");
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg.setNombre(name);
-        fread(&plantel,sizeof(int),1,punteroFile);
-        reg.setPlantel(plantel);
-        for(int i=0; i<plantel; i++){
-            fread(&jugador,sizeof(char),50,punteroFile);
-            reg.setJugador(i,jugador);
+        fread(&quantity,sizeof(int),1,punteroFile);
+        reg.setPlantel(quantity);
+        for(int i=0; i<quantity; i++){
+            fread(&player,sizeof(char),50,punteroFile);
+            reg.setJugador(i,player);
         }
         reg.mostrarEquipo();
     }
@@ -211,28 +207,37 @@ Equipo archivoEquipo::listarRegistro(int pos){
     FILE* punteroFile;
     Equipo reg;
     char name[50]={0};
-    char player[50]={0};
-    int quantity;
+    char jugador[50]={0};
+    int plantel;
+    int iteraciones=0;
+    bool encontrado = false;
     punteroFile=fopen(nombre, "rb");
     if(punteroFile==nullptr){return reg;}
-    fseek(punteroFile, (pos-1) * sizeof(Equipo),0);
-    if(fread(&name,sizeof(char),50,punteroFile)!=50){
-        reg.setNombre(name);
-        fread(&quantity,sizeof(int),1,punteroFile);
-        reg.setPlantel(quantity);
-        for(int i=0; i<quantity; i++){
-            fread(&player,sizeof(char),50,punteroFile);
-            reg.setJugador(i,player);
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&plantel,sizeof(int),1,punteroFile);
+        for(int i=0;i<plantel;i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
         }
-    } else {
-        cout << "EQUIPO NO ENCONTRADO..." <<endl;
-        return reg;
+        if(iteraciones == pos){
+            encontrado=true;
+            reg.setNombre(name);
+            reg.setPlantel(plantel);
+            fseek(punteroFile,-(plantel*sizeof(char)*50),SEEK_CUR);
+            for(int i=0;i<plantel;i++){
+                fread(&jugador,sizeof(char),50,punteroFile);
+                reg.setJugador(i,jugador);
+            }
+        }
+        iteraciones++;
     }
+
+    if(!encontrado){
+        cout << "Equipo no encontrado..." <<endl;
+    }
+
     fclose(punteroFile);
     return reg;
 }
-<<<<<<< Updated upstream
-=======
 
 bool  archivoEquipo::buscarRegistro(){
     FILE* punteroFile;
@@ -273,6 +278,5 @@ bool  archivoEquipo::buscarRegistro(){
     cout<<"EQUIPO NO ENCONTRADO..."<<endl;
     fclose(punteroFile);
     return false;
-//mogolico
+
 }
->>>>>>> Stashed changes

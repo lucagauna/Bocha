@@ -194,27 +194,14 @@
 1728662811 c:\users\luka\desktop\bocha\bocha 0.5v\funciones.h
 	<iostream>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-1729107819 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
-=======
-=======
->>>>>>> Stashed changes
-1729113549 ated upstream
+1728946122 ated upstream
 
-1729184804 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
->>>>>>> Stashed changes
+1729182929 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
 	"equipos.h"
 	<iostream>
 	<cstring>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-1729104821 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
-=======
-=======
->>>>>>> Stashed changes
-1729115760 shed changes
+1729176379 shed changes
 	"equipos.h"
 	<iostream>
 	<cstring>
@@ -223,18 +210,8 @@
 	"funciones.h"
 	"jugador.h"
 	"equipos.h"
-	<iostream>
-	<cstring>
-	"funciones.h"
-	"jugador.h"
-	"equipos.h"
 
-<<<<<<< Updated upstream
-1729184914 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
->>>>>>> Stashed changes
-=======
-1729185029 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
->>>>>>> Stashed changes
+1729182929 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
 	<iostream>
 	<vector>
 	"jugador.h"
@@ -246,44 +223,22 @@
 	"jugador.h"
 	<iostream>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-1729108005 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
-=======
-1729184882 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
->>>>>>> Stashed changes
-=======
-1729185004 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
->>>>>>> Stashed changes
+1729184228 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"jugador.h"
 	"equipos.h"
 
-<<<<<<< Updated upstream
-1729184804 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
+1728946122 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
 	<iostream>
 
-<<<<<<< Updated upstream
-=======
-=======
-1729185004 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
-	<iostream>
-
->>>>>>> Stashed changes
-1729115760 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
-	"equipos.h"
-	<iostream>
-	<cstring>
+1729005503 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
 	"equipos.h"
 	<iostream>
 	<cstring>
 
-1729115749 c:\users\luka\desktop\proyecto\bocha\equipos.h
-	<iostream>
-	<vector>
-	"jugador.h"
+1729007237 c:\users\luka\desktop\proyecto\bocha\equipos.h
 	<iostream>
 	<vector>
 	"jugador.h"
@@ -291,48 +246,17 @@
 1728942739 c:\users\luka\desktop\proyecto\bocha\jugador.h
 	<iostream>
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 1728942739 source:c:\users\luka\desktop\proyecto\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-1728942739 c:\users\luka\desktop\proyecto\bocha\jugador.h
-	<iostream>
-
-1729108594 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
+1729005541 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"jugador.h"
 	"equipos.h"
-=======
-1729115764 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
->>>>>>> Stashed changes
-=======
-1729115764 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
->>>>>>> Stashed changes
 
 1728942739 c:\users\luka\desktop\proyecto\bocha\funciones.h
 	<iostream>
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-1729108594 c:\users\luka\desktop\proyecto\bocha\equipos.h
-	<iostream>
-	<vector>
-	"jugador.h"
-
-1729109561 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
-	"equipos.h"
-	<iostream>
-	<cstring>
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
