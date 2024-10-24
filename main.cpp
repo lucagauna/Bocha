@@ -16,7 +16,13 @@ using namespace std;
 int main() {
     mostrarMenu();
     Equipo club;
+    Jugador jugador;
     archivoEquipo reg("Equipos.dat");
+    archivoJugador lol("Jugadores.dat");
+
+    lol.agregarJugador(jugador);
+
+
     //club = reg.listarRegistro(4);
     //club.mostrarEquipo();
     club.cargar();

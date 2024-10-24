@@ -24,6 +24,7 @@ public:
     string getEquipo() const;
     string getPosicion() const;
     int getEdad() const;
+    int getNumero() const;
     int getGoles() const;
     int getAsistencias() const;
 
@@ -38,6 +39,19 @@ public:
 
 
     void mostrarJugador() const;
+};
+
+class archivoJugador {
+private:
+    char nombreArchivo[50];
+public:
+    archivoJugador(const char* nombreArchivo);
+    bool agregarJugador(Jugador jugador);
+    bool eliminarJugador(const char* nombreJugador);
+    bool modificarJugador(Jugador jugador);
+    bool buscarJugador(const char* nombreJugador);
+    bool mostrarJugadores();
+    Jugador listarJugador(int pos);
 };
 
 #endif // JUGADOR_H
