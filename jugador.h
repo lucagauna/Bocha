@@ -16,7 +16,7 @@ private:
 
 public:
     // Constructor
-    Jugador(); // Este settea los valores default
+    void cargar(); // Este settea los valores default
 
 
     // Getters

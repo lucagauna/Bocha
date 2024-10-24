@@ -20,20 +20,21 @@ int main() {
     archivoEquipo reg("Equipos.dat");
     archivoJugador lol("Jugadores.dat");
 
-    lol.agregarJugador(jugador);
-
+    //jugador.cargar();
+    //lol.agregarJugador(jugador);
+    lol.eliminarJugador("Lionel Messi");
+    lol.mostrarJugadores();
 
     //club = reg.listarRegistro(4);
     //club.mostrarEquipo();
-    club.cargar();
+    //club.cargar();
     //reg.agregarRegistro(club);
     //reg.eliminarRegistro("River Plate");
-    reg.modificarRegistro(club); ///ARREGLAR!!!!!!!
+    //reg.modificarRegistro(club); ///ARREGLAR!!!!!!!
     //reg.buscarRegistro();
-    reg.mostrarRegistro();
+    //reg.mostrarRegistro();
 
 
-    //254 - 508 - 762 - 1016
     //Revisar Vector Dinamico...
     //Revisar si se puede simplificar declarando chars...
     return 0;

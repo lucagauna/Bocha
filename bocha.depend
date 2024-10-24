@@ -196,7 +196,7 @@
 
 1728946122 ated upstream
 
-1729182929 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
+1729778276 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
 	"equipos.h"
 	<iostream>
 	<cstring>
@@ -211,26 +211,27 @@
 	"jugador.h"
 	"equipos.h"
 
-1729182929 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
+1729781305 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
 	<iostream>
 	<vector>
 	"jugador.h"
 
-1728946122 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
+1729784450 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
 	<iostream>
 
-1728946122 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
+1729787507 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
+	<cstring>
 
-1729184228 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
+1729787576 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"jugador.h"
 	"equipos.h"
 
-1728946122 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
+1729778282 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
 	<iostream>
 
 1729185336 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
