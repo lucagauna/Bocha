@@ -22,10 +22,11 @@ int main() {
 
     //jugador.cargar();
     //lol.agregarJugador(jugador);
-    lol.eliminarJugador("Lionel Messi");
-    lol.mostrarJugadores();
+    //jugador = lol.listarJugador("Alan Velasco");
+    //jugador.mostrarJugador();
+    //lol.mostrarJugadores();
 
-    //club = reg.listarRegistro(4);
+    //club = reg.listarRegistro(" ");
     //club.mostrarEquipo();
     //club.cargar();
     //reg.agregarRegistro(club);

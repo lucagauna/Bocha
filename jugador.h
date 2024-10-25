@@ -49,7 +49,7 @@ public:
     bool agregarJugador(Jugador jugador);
     bool eliminarJugador(const char* nombreJugador);
     bool modificarJugador(Jugador jugador);
-    bool buscarJugador(const char* nombreJugador);
+    Jugador listarJugador(const char* nombreJugador);
     bool mostrarJugadores();
     Jugador listarJugador(int pos);
 };

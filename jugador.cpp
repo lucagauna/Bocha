@@ -189,54 +189,59 @@ bool archivoJugador::eliminarJugador(const char* nombreJugador) {
 bool archivoJugador::modificarJugador(Jugador jugador) {
     FILE *punteroFile, *punteroTemp;
     char nombre[50] = {0};
+    char posicion[50]={0};
+    char team[50]={0};
+    int edad, numero, goles, asistencias;
     bool encontrado = false;
 
     punteroFile = fopen(nombreArchivo, "rb");
-    if (punteroFile == nullptr) {
-        return false;
-    }
-
+    if (punteroFile == nullptr) {return false;}
     punteroTemp = fopen("temp.dat", "wb");
-    if (punteroTemp == nullptr) {
-        fclose(punteroFile);
-        return false;
-    }
+    if (punteroTemp == nullptr) {return false;}
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+            cout << nombre << endl << jugador.getNombre() << endl;
         if (strcmp(nombre, jugador.getNombre().c_str()) != 0) {
             fwrite(&nombre, sizeof(char), 50, punteroTemp);
-            char posicion[50];
-            int edad, numero, goles, asistencias;
-            fread(posicion, sizeof(char), 50, punteroFile);
+            fread(&team, sizeof(char), 50, punteroFile);
+            fwrite(&team, sizeof(char), 50, punteroTemp);
             fread(&edad, sizeof(int), 1, punteroFile);
-            fread(&numero, sizeof(int), 1, punteroFile);
-            fread(&goles, sizeof(int), 1, punteroFile);
-            fread(&asistencias, sizeof(int), 1, punteroFile);
-
-            fwrite(posicion, sizeof(char), 50, punteroTemp);
             fwrite(&edad, sizeof(int), 1, punteroTemp);
-            fwrite(&numero, sizeof(int), 1, punteroTemp);          /// REVISA SI ESTA PARA EL OJAL
+            fread(&posicion, sizeof(char), 50, punteroFile);
+            fwrite(&posicion, sizeof(char), 50, punteroTemp);
+            fread(&numero, sizeof(int), 1, punteroFile);
+            fwrite(&numero, sizeof(int), 1, punteroTemp);
+            fread(&goles, sizeof(int), 1, punteroFile);
             fwrite(&goles, sizeof(int), 1, punteroTemp);
+            fread(&asistencias, sizeof(int), 1, punteroFile);
             fwrite(&asistencias, sizeof(int), 1, punteroTemp);
         } else {
             encontrado = true;
-            char nombreNuevo[50];
-            strncpy(nombreNuevo, jugador.getNombre().c_str(), 49);
-            fwrite(nombreNuevo, sizeof(char), 50, punteroTemp);
+            strncpy(nombre, jugador.getNombre().c_str(), 49);
+            fwrite(&nombre, sizeof(char), 50, punteroTemp);
 
-            char posicion[50];
-            strncpy(posicion, jugador.getPosicion().c_str(), 49);
-            fwrite(posicion, sizeof(char), 50, punteroTemp);
+            strncpy(team, jugador.getEquipo().c_str(), 49);
+            fwrite(&team, sizeof(char), 50, punteroTemp);
 
-            int edad = jugador.getEdad();
-            int numero = jugador.getNumero();
-            int goles = jugador.getGoles();
-            int asistencias = jugador.getAsistencias();
-
+            edad = jugador.getEdad();
             fwrite(&edad, sizeof(int), 1, punteroTemp);
+
+            strncpy(posicion, jugador.getPosicion().c_str(), 49);
+            fwrite(&posicion, sizeof(char), 50, punteroTemp);
+
+            numero = jugador.getNumero();
             fwrite(&numero, sizeof(int), 1, punteroTemp);
+            goles = jugador.getGoles();
             fwrite(&goles, sizeof(int), 1, punteroTemp);
+            asistencias = jugador.getAsistencias();
             fwrite(&asistencias, sizeof(int), 1, punteroTemp);
+
+            fread(&team, sizeof(char), 50, punteroFile);
+            fread(&edad, sizeof(int), 1, punteroFile);
+            fread(&posicion, sizeof(char), 50, punteroFile);
+            fread(&numero, sizeof(int), 1, punteroFile);
+            fread(&goles, sizeof(int), 1, punteroFile);
+            fread(&asistencias, sizeof(int), 1, punteroFile);
         }
     }
 
@@ -246,50 +251,56 @@ bool archivoJugador::modificarJugador(Jugador jugador) {
     if (encontrado) {
         remove(nombreArchivo);
         rename("temp.dat", nombreArchivo);
+    } else{
+        cout << "No se encontro el jugador..." <<endl;
+        remove("temp.dat");
     }
 
     return encontrado;
 }
 
-bool archivoJugador::buscarJugador(const char* nombreJugador) {
+Jugador archivoJugador::listarJugador(const char* nombreJugador) {
     FILE *punteroFile;
+    Jugador reg;
     char nombre[50] = {0};
     char posicion[50] = {0};
+    char team[50] = {0};
     int edad, numero, goles, asistencias;
 
     punteroFile = fopen(nombreArchivo, "rb");
-    if (punteroFile == nullptr) {
-        cout << "Error al abrir el archivo." << endl;
-        return false;
-    }
+    if (punteroFile == nullptr) {return reg;};
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
         if (strcmp(nombre, nombreJugador) == 0) {
-            fread(posicion, sizeof(char), 50, punteroFile);
+            reg.setNombre(nombre);
+            fread(&team, sizeof(char), 50, punteroFile);
+            reg.setEquipo(team);
             fread(&edad, sizeof(int), 1, punteroFile);
+            reg.setEdad(edad);
+            fread(&posicion, sizeof(char), 50, punteroFile);
+            reg.setPosicion(posicion);
+            fread(&numero, sizeof(int), 1, punteroFile);
+            reg.setNumero(numero);
+            fread(&goles, sizeof(int), 1, punteroFile);
+            reg.setGoles(goles);
+            fread(&asistencias, sizeof(int), 1, punteroFile);
+            reg.setAsistencias(asistencias);
+
+            fclose(punteroFile);
+            return reg;
+        } else {
+            fread(&team, sizeof(char), 50, punteroFile);
+            fread(&edad, sizeof(int), 1, punteroFile);
+            fread(&posicion, sizeof(char), 50, punteroFile);
             fread(&numero, sizeof(int), 1, punteroFile);
             fread(&goles, sizeof(int), 1, punteroFile);
             fread(&asistencias, sizeof(int), 1, punteroFile);
-
-
-            cout << "Nombre: " << nombre << endl;
-            cout << "Posicion: " << posicion << endl;
-            cout << "Edad: " << edad << endl;
-            cout << "Numero: " << numero << endl;
-            cout << "Goles: " << goles << endl;
-            cout << "Asistencias: " << asistencias << endl;
-
-            fclose(punteroFile);
-            return true;
-        } else {
-
-            fseek(punteroFile, sizeof(char) * 50 + 4 * sizeof(int), SEEK_CUR);
         }
     }
 
     cout << "Jugador no encontrado." << endl;
     fclose(punteroFile);
-    return false;
+    return reg;
 }
 
 bool archivoJugador::mostrarJugadores(){

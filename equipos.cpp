@@ -202,33 +202,35 @@ bool archivoEquipo::mostrarRegistro(){
     fclose(punteroFile);
     return true;
 }
-
-Equipo archivoEquipo::listarRegistro(int pos){
+Equipo archivoEquipo::listarRegistro(const char* team){
     FILE* punteroFile;
     Equipo reg;
     char name[50]={0};
     char jugador[50]={0};
     int plantel;
-    int iteraciones=0;
     bool encontrado = false;
     punteroFile=fopen(nombre, "rb");
     if(punteroFile==nullptr){return reg;}
     while(fread(&name,sizeof(char),50,punteroFile)==50){
-        fread(&plantel,sizeof(int),1,punteroFile);
-        for(int i=0;i<plantel;i++){
-            fread(&jugador,sizeof(char),50,punteroFile);
-        }
-        if(iteraciones == pos){
-            encontrado=true;
+        if(strcmp(team, name)==0){
+            encontrado = true;
             reg.setNombre(name);
+            fread(&plantel,sizeof(int),1,punteroFile);
             reg.setPlantel(plantel);
-            fseek(punteroFile,-(plantel*sizeof(char)*50),SEEK_CUR);
-            for(int i=0;i<plantel;i++){
+            for(int i=0; i<plantel; i++){
+                fread(&jugador,sizeof(char),50,punteroFile);
+                reg.setJugador(i,jugador);
+            }
+            fclose(punteroFile);
+            return reg;
+        } else {
+           fread(&plantel,sizeof(int),1,punteroFile);
+            for(int i=0; i<plantel; i++){
                 fread(&jugador,sizeof(char),50,punteroFile);
                 reg.setJugador(i,jugador);
             }
         }
-        iteraciones++;
+
     }
 
     if(!encontrado){
@@ -239,7 +241,7 @@ Equipo archivoEquipo::listarRegistro(int pos){
     return reg;
 }
 
-bool  archivoEquipo::buscarRegistro(){
+/*bool  archivoEquipo::buscarRegistro(){
     FILE* punteroFile;
     Equipo reg;
     char nombreEquipo[50] = {0};
@@ -280,3 +282,4 @@ bool  archivoEquipo::buscarRegistro(){
     return false;
 
 }
+*/
