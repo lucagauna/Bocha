@@ -4,13 +4,13 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-#include "jugador.h"
+
 
 class Equipo {
 
 private:
     string nombre;
-    string* jugadores; ///ELIMINAR VECTOR DINAMICO!!!!!
+    string* jugadores;
     int plantel=0;
 public:
     // Constructor

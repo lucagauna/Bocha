@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include "funciones.h"
+#include "menu.h"
 #include "jugador.h"
 #include "equipos.h"
 
@@ -14,11 +14,13 @@
 using namespace std;
 
 int main() {
-    mostrarMenu();
+    Menu menu;
     Equipo club;
     Jugador jugador;
     archivoEquipo reg("Equipos.dat");
     archivoJugador lol("Jugadores.dat");
+
+    menu.mostrarMenu();
 
     //jugador.cargar();
     //lol.agregarJugador(jugador);

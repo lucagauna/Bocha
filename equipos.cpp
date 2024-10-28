@@ -10,7 +10,7 @@ void Equipo::cargar(){
     cout << "Ingrese cantidad de jugadores: ";
     cin >> plantel;
     while(plantel<=0){
-        cout << "Ingrese cantidad de jugadores: ";
+        cout << "Reingrese cantidad de jugadores: ";
         cin >> plantel;
     }
     cin.ignore();

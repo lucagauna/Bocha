@@ -5,21 +5,93 @@ using namespace std;
 
 // Constructor
 void Jugador::cargar(){
+    FILE *punteroFile = fopen("Equipos.dat", "rb");
+    if(punteroFile==nullptr){return;}
+    char team[50] = {0};
+    int plantel = 0;
+    char jugador[50] = {0};
+    bool verificacionJugador=false;
+    bool verificacionEquipo=false;
+
     cout<<"Ingrese el Nombre del Jugador: ";
     getline(cin,nombre);
+    while(verificacionJugador==false){
+        fseek(punteroFile,0,0);
+        while(fread(&team,sizeof(char),50,punteroFile)==50){
+            fread(&plantel,sizeof(int),1,punteroFile);
+            for(int i=0; i<plantel; i++){
+                fread(&jugador,sizeof(char),50,punteroFile);
+                if(nombre==jugador){
+                    verificacionJugador=true;
+                }
+            }
+
+        }
+        if(!verificacionJugador){
+            cout<<"Reingrese el Nombre del Jugador: ";
+            getline(cin,nombre);
+        }
+    }
+
     cout<<"Ingrese el equipo del Jugador: ";
     getline(cin,equipo);
+    while(verificacionEquipo==false){
+        fseek(punteroFile,0,0);
+        while(fread(&team,sizeof(char),50,punteroFile)==50){
+            fread(&plantel,sizeof(int),1,punteroFile);
+            for(int i=0; i<plantel; i++){
+                fread(&jugador,sizeof(char),50,punteroFile);
+                if(equipo==team && jugador==nombre){
+                    verificacionEquipo=true;
+                }
+            }
+
+        }
+        if(!verificacionEquipo){
+            cout<<"Reingrese el equipo del Jugador: ";
+            getline(cin,equipo);
+        }
+    }
+    fclose(punteroFile);
+
     cout<<"Ingrese la edad del Jugador: ";
     cin>>edad;
     cin.ignore();
+
+    while(edad<1||edad>99){
+        cout<<"Reingrese la edad del jugador: ";
+        cin>>edad;
+        cin.ignore();
+    }
+
     cout<<"Ingrese la posicion del Jugador: ";
     getline(cin, posicion);
+    while(posicion!="Delantero"&&posicion!="Mediocampista"&&posicion!="Defensor"&&posicion!="Arquero"){
+        cout<<"Reingrese la posicion del Jugador: ";
+        getline(cin, posicion);
+    }
+
     cout<<"Ingrese la dorsal del jugador: ";
     cin>>numero;
-    cout<<"Ingrese los goles anotados del jugador: ";
+    while(numero<1||numero>99){
+        cout<<"Reingrese la dorsal del jugador: ";
+        cin>>numero;
+    }
+
+    cout<<"Ingrese los goles anotados por el jugador: ";
     cin>>goles;
-     cout<<"Ingrese las asistencias realizadas del jugador: ";
+    while(goles<1){
+        cout<<"Reingrese los goles anotados por el jugador: ";
+        cin>>goles;
+    }
+
+    cout<<"Ingrese las asistencias realizadas por el jugador: ";
     cin>>asistencias;
+    while(asistencias<1){
+        cout<<"Reingrese las asistencias realizadas por el jugador: ";
+        cin>>asistencias;
+
+    }
 
 
 }
@@ -62,27 +134,44 @@ void Jugador::setEquipo(const string& equipo) {
 }
 
 void Jugador::setEdad(int edad) {
-    if (edad >= 0) {
+    if (edad >= 0 && edad < 100) {
         this->edad = edad;
     } else {
-        cout << "Error: No puedes poner ningún jugador que aun no haya nacido!!" << endl;
+        cout << "Error: Edad Incoherente!!" << endl;
     }
 }
 
 void Jugador::setPosicion(string posicion) {
-    this->posicion = posicion;
+    if(posicion=="Delantero"||posicion=="Mediocampista"||posicion=="Defensor"||posicion=="Arquero"){
+        this->posicion = posicion;
+    } else {
+        cout << "Error: Posicion Incorrecta!!" <<endl;
+    }
 }
 
 void Jugador::setGoles(int goles) {
-    this->goles = goles;
+    if(goles>=0){
+        this->goles = goles;
+    } else {
+        cout << "Error: Goles Incoherentes!!" <<endl;
+    }
 }
 
 void Jugador::setAsistencias(int asistencias) {
-    this->asistencias = asistencias;
+    if(asistencias>0){
+        this->asistencias = asistencias;
+    } else {
+        cout << "Error: Asistencias Incoherentes!!" <<endl;
+    }
+
 }
 
 void Jugador::setNumero(int numero) {
-    this->numero = numero;
+    if(numero>0 && numero<100){
+        this->numero = numero;
+    } else{
+        cout << "Error: Numero Imposible!!" <<endl;
+    }
 }
 
 
@@ -107,13 +196,38 @@ bool archivoJugador::agregarJugador(Jugador jugador){
     char name[50] = {0};
     char team[50] = {0};
     char position[50] = {0};
-    int age = jugador.getEdad();
-    int number  = jugador.getNumero();
-    int goals = jugador.getGoles();
-    int assists = jugador.getAsistencias();
+    int age = 0;
+    int number  = 0;
+    int goals = 0;
+    int assists = 0;
+
+
+    punteroFile = fopen(nombreArchivo, "rb+");
+    if (punteroFile == nullptr){
+        punteroFile = fopen(nombreArchivo, "wb+");
+        if(punteroFile==nullptr){
+            fclose(punteroFile);
+            return 0;
+        }
+    }
+
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        if(name==jugador.getNombre()){
+            cout << "Jugador ya ingresado..." <<endl;
+            return 0;
+        }
+        fread(&team,sizeof(char),50,punteroFile);
+        fread(&age,sizeof(int),1,punteroFile);
+        fread(&position,sizeof(char),50,punteroFile);
+        fread(&number,sizeof(int),1,punteroFile);
+        fread(&goals,sizeof(int),1,punteroFile);
+        fread(&assists,sizeof(int),1,punteroFile);
+    }
+    fclose(punteroFile);
 
     punteroFile = fopen(nombreArchivo, "ab");
     if (punteroFile == nullptr){return false;}
+
 
     strncpy(name, jugador.getNombre().c_str(), 49);
     fwrite(&name, sizeof(char), 50, punteroFile);
@@ -121,13 +235,19 @@ bool archivoJugador::agregarJugador(Jugador jugador){
     strncpy(team, jugador.getEquipo().c_str(), 49);
     fwrite(&team, sizeof(char), 50, punteroFile);
 
+    age = jugador.getEdad();
     fwrite(&age, sizeof(int), 1, punteroFile);
 
     strncpy(position, jugador.getPosicion().c_str(), 49);
     fwrite(&position, sizeof(char), 50, punteroFile);
 
+    number  = jugador.getNumero();
     fwrite(&number, sizeof(int), 1, punteroFile);
+
+    goals = jugador.getGoles();
     fwrite(&goals, sizeof(int), 1, punteroFile);
+
+    assists = jugador.getAsistencias();
     fwrite(&assists, sizeof(int), 1, punteroFile);
 
     fclose(punteroFile);
