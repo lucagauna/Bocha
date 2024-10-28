@@ -80,14 +80,14 @@ void Jugador::cargar(){
 
     cout<<"Ingrese los goles anotados por el jugador: ";
     cin>>goles;
-    while(goles<1){
+    while(goles<0){
         cout<<"Reingrese los goles anotados por el jugador: ";
         cin>>goles;
     }
 
     cout<<"Ingrese las asistencias realizadas por el jugador: ";
     cin>>asistencias;
-    while(asistencias<1){
+    while(asistencias<0){
         cout<<"Reingrese las asistencias realizadas por el jugador: ";
         cin>>asistencias;
 
@@ -158,7 +158,7 @@ void Jugador::setGoles(int goles) {
 }
 
 void Jugador::setAsistencias(int asistencias) {
-    if(asistencias>0){
+    if(asistencias>=0){
         this->asistencias = asistencias;
     } else {
         cout << "Error: Asistencias Incoherentes!!" <<endl;
@@ -258,8 +258,9 @@ bool archivoJugador::agregarJugador(Jugador jugador){
 bool archivoJugador::eliminarJugador(const char* nombreJugador) {
     FILE *punteroFile, *punteroTemp;
     Jugador jugador;
+    char team[50]={0};
     char nombre[50] = {0};
-    char posicion[50];
+    char posicion[50]={0};
     bool encontrado = false;
     int edad, numero, goles, asistencias;
 
@@ -271,10 +272,12 @@ bool archivoJugador::eliminarJugador(const char* nombreJugador) {
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
         if (strcmp(nombre, nombreJugador) != 0) {
             fwrite(&nombre, sizeof(char), 50, punteroTemp);
-            fread(posicion, sizeof(char), 50, punteroFile);
-            fwrite(posicion, sizeof(char), 50, punteroTemp);
+            fread(&team, sizeof(char), 50, punteroFile);
+            fwrite(&team, sizeof(char), 50, punteroTemp);
             fread(&edad, sizeof(int), 1, punteroFile);
             fwrite(&edad, sizeof(int), 1, punteroTemp);
+            fread(&posicion, sizeof(char), 50, punteroFile);
+            fwrite(&posicion, sizeof(char), 50, punteroTemp);
             fread(&numero, sizeof(int), 1, punteroFile);
             fwrite(&numero, sizeof(int), 1, punteroTemp);
             fread(&goles, sizeof(int), 1, punteroFile);
@@ -283,8 +286,9 @@ bool archivoJugador::eliminarJugador(const char* nombreJugador) {
             fwrite(&asistencias, sizeof(int), 1, punteroTemp);
         } else {
             encontrado = true;
-            fread(posicion, sizeof(char), 50, punteroFile);
+            fread(&team, sizeof(char), 50, punteroFile);
             fread(&edad, sizeof(int), 1, punteroFile);
+            fread(&posicion, sizeof(char), 50, punteroFile);
             fread(&numero, sizeof(int), 1, punteroFile);
             fread(&goles, sizeof(int), 1, punteroFile);
             fread(&asistencias, sizeof(int), 1, punteroFile);
@@ -320,7 +324,6 @@ bool archivoJugador::modificarJugador(Jugador jugador) {
     if (punteroTemp == nullptr) {return false;}
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
-            cout << nombre << endl << jugador.getNombre() << endl;
         if (strcmp(nombre, jugador.getNombre().c_str()) != 0) {
             fwrite(&nombre, sizeof(char), 50, punteroTemp);
             fread(&team, sizeof(char), 50, punteroFile);

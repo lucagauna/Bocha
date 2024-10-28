@@ -55,20 +55,40 @@ bool archivoEquipo::agregarRegistro(Equipo reg){
     FILE *punteroFile;
     Equipo lista;
     int escribio;
+    int plantel;
     char jugador[50]={0};
     char name[50]={0};
-    punteroFile=fopen(nombre,"ab");
-    if(punteroFile==nullptr){return 0;}
-    while(fread(&lista,sizeof(Equipo),1,punteroFile)==1){ /// ARREGLAR >:V
-        if(lista.getNombre()==reg.getNombre()){
-            cout<< "Equipo ya ingresado..."  <<endl;
+
+
+    punteroFile = fopen(nombre, "rb+");
+    if (punteroFile == nullptr){
+        punteroFile = fopen(nombre, "wb+");
+        if(punteroFile==nullptr){
+            fclose(punteroFile);
             return 0;
         }
     }
+
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        if(name==reg.getNombre()){
+            cout << "Equipo ya ingresado..." <<endl;
+            return 0;
+        }
+        fread(&plantel,sizeof(int),1,punteroFile);
+        for(int i=0; i<plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+        }
+    }
+    fclose(punteroFile);
+
+    punteroFile = fopen(nombre, "ab");
+    if (punteroFile == nullptr){return false;}
+
+
     strncpy(name, reg.getNombre().c_str(), 49);
     name[49]='\0';
     escribio=fwrite(name,sizeof(char),50,punteroFile);
-    int plantel= reg.getPlantel();
+    plantel= reg.getPlantel();
     escribio=fwrite(&plantel,sizeof(int),1,punteroFile);
     for(int i=0; i<reg.getPlantel(); i++){
         strncpy(jugador, reg.getJugador(i).c_str(), 49);
@@ -162,7 +182,9 @@ bool archivoEquipo::modificarRegistro(Equipo club){
 
             }
             fread(&plantel, sizeof(int), 1, punteroFile);
-            fseek(punteroFile, plantel * sizeof(char) * 50, SEEK_CUR);
+            for(int i=0; i<plantel; i++){
+                fread(&jugador, sizeof(char),50,punteroFile);
+            }
         }
 
 
@@ -227,7 +249,6 @@ Equipo archivoEquipo::listarRegistro(const char* team){
            fread(&plantel,sizeof(int),1,punteroFile);
             for(int i=0; i<plantel; i++){
                 fread(&jugador,sizeof(char),50,punteroFile);
-                reg.setJugador(i,jugador);
             }
         }
 
