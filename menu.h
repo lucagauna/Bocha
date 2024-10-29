@@ -9,7 +9,9 @@ private:
 public:
     void mostrarMenu();
     void menuEquipos();
+    void subMenuEquipos();
     void menuJugadores();
+    void subMenuJugadores();
 };
 
 #endif // FUNCIONES_H

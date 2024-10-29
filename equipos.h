@@ -13,7 +13,10 @@ private:
     string* jugadores;
     int plantel=0;
 public:
+
     // Constructor
+    Equipo();
+
     void cargar();
     // Destructor
 
@@ -42,7 +45,9 @@ public:
     bool modificarRegistro(Equipo club);
     ///bool buscarRegistro();
     bool mostrarRegistro();
-    Equipo listarRegistro(const char* team);
+    Equipo buscarEquipo(const char* team);
+    Equipo buscarJugador(const char* player);
+    Equipo buscarPlantel(int quantity);
 
 };
 

@@ -4,6 +4,11 @@
 using namespace std;
 
 // Constructor
+Equipo::Equipo(){
+    nombre="Undefined";
+    plantel=-1;
+}
+
 void Equipo::cargar(){
     cout << "Ingrese nombre del Equipo: ";
     getline(cin,nombre);
@@ -96,7 +101,7 @@ bool archivoEquipo::agregarRegistro(Equipo reg){
         escribio=fwrite(jugador,sizeof(char),50,punteroFile);
     }
     fclose(punteroFile);
-    return escribio; // ELIMINAR VECTOR DINAMICO!!
+    return escribio;
 }
 
 bool archivoEquipo::eliminarRegistro(char* club){
@@ -224,7 +229,7 @@ bool archivoEquipo::mostrarRegistro(){
     fclose(punteroFile);
     return true;
 }
-Equipo archivoEquipo::listarRegistro(const char* team){
+Equipo archivoEquipo::buscarEquipo(const char* team){
     FILE* punteroFile;
     Equipo reg;
     char name[50]={0};
@@ -256,6 +261,77 @@ Equipo archivoEquipo::listarRegistro(const char* team){
 
     if(!encontrado){
         cout << "Equipo no encontrado..." <<endl;
+    }
+
+    fclose(punteroFile);
+    return reg;
+}
+
+Equipo archivoEquipo::buscarJugador(const char* player){
+    FILE* punteroFile;
+    Equipo reg;
+    char name[50]={0};
+    char jugador[50]={0};
+    int plantel;
+    bool encontrado = false;
+    punteroFile=fopen(nombre, "rb");
+    if(punteroFile==nullptr){return reg;}
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        reg.setNombre(name);
+        fread(&plantel,sizeof(int),1,punteroFile);
+        reg.setPlantel(plantel);
+        for(int i=0; i<plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+            reg.setJugador(i,jugador);
+            if(strcmp(player, jugador)==0){
+                encontrado = true;
+            }
+        }
+        if(encontrado){
+            fclose(punteroFile);
+            return reg;
+        }
+    }
+
+    if(!encontrado){
+        cout << "Jugador no encontrado..." <<endl;
+    }
+
+    fclose(punteroFile);
+    reg.setNombre(" ");
+    reg.setPlantel(0);
+    return reg;
+}
+
+Equipo archivoEquipo::buscarPlantel(int quantity){
+    FILE* punteroFile;
+    Equipo reg;
+    char name[50]={0};
+    char jugador[50]={0};
+    int plantel;
+    bool encontrado = false;
+    punteroFile=fopen(nombre, "rb");
+    if(punteroFile==nullptr){return reg;}
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        encontrado=false;
+        reg.setNombre(name);
+        fread(&plantel,sizeof(int),1,punteroFile);
+        reg.setPlantel(plantel);
+        if(quantity==plantel){
+        encontrado = true;
+        }
+        for(int i=0; i<plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+            reg.setJugador(i,jugador);
+        }
+        if(encontrado){
+            reg.mostrarEquipo();
+        }
+
+    }
+
+    if(!encontrado){
+        cout << "Plantel no encontrado..." <<endl;
     }
 
     fclose(punteroFile);
@@ -304,3 +380,74 @@ Equipo archivoEquipo::listarRegistro(const char* team){
 
 }
 */
+
+
+
+/*Equipo archivoEquipo::buscar(const char* team){
+    FILE* punteroFile;
+    Equipo reg;
+    char name[50]={0};
+    char jugador[50]={0};
+    int plantel;
+    bool encontrado = false;
+    punteroFile=fopen(nombre, "rb");
+    if(punteroFile==nullptr){return reg;}
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        if(busqueda==0){
+            if(strcmp(team, name)==0){
+                encontrado = true;
+                reg.setNombre(name);
+                fread(&plantel,sizeof(int),1,punteroFile);
+                reg.setPlantel(plantel);
+                for(int i=0; i<plantel; i++){
+                    fread(&jugador,sizeof(char),50,punteroFile);
+                    reg.setJugador(i,jugador);
+                }
+                fclose(punteroFile);
+                return reg;
+            } else {
+            fread(&plantel,sizeof(int),1,punteroFile);
+                for(int i=0; i<plantel; i++){
+                    fread(&jugador,sizeof(char),50,punteroFile);
+                }
+            }
+        } else if(busqueda==1){
+            reg.setNombre(name);
+            fread(&plantel,sizeof(int),1,punteroFile);
+            reg.setPlantel(plantel);
+            for(int i=0; i<plantel; i++){
+                fread(&jugador,sizeof(char),50,punteroFile);
+                reg.setJugador(i,jugador);
+                if(strcmp(player, jugador)==0){
+                    encontrado = true;
+                }
+            }
+            if(encontrado){
+                fclose(punteroFile);
+                return reg;
+            }
+        } else if (busqueda==2){
+            encontrado=false;
+            reg.setNombre(name);
+            fread(&plantel,sizeof(int),1,punteroFile);
+            reg.setPlantel(plantel);
+            if(quantity==plantel){
+                encontrado = true;
+            }
+            for(int i=0; i<plantel; i++){
+                fread(&jugador,sizeof(char),50,punteroFile);
+                reg.setJugador(i,jugador);
+            }
+            if(encontrado){
+                reg.mostrarEquipo();
+            }
+        }
+    }
+
+    if(!encontrado){
+        cout << "Equipo no encontrado..." <<endl;
+    }
+
+    fclose(punteroFile);
+    return reg;
+}*/

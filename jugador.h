@@ -16,6 +16,8 @@ private:
 
 public:
     // Constructor
+    Jugador();
+
     void cargar(); // Este settea los valores default
 
 
@@ -49,10 +51,14 @@ public:
     bool agregarJugador(Jugador jugador);
     bool eliminarJugador(const char* nombreJugador);
     bool modificarJugador(Jugador jugador);
-    Jugador listarJugador(const char* nombreJugador);
     bool mostrarJugadores();
-    Jugador listarJugador(int pos);
-    void busquedadAvanzada()
+    Jugador buscarJugador(const char* nombreJugador);
+    Jugador buscarEquipo(const char* equipo);
+    Jugador buscarEdad(int age);
+    Jugador buscarPosicion(const char* position);
+    Jugador buscarDorsal(int dorsal);
+    Jugador buscarGoles(int goals);
+    Jugador buscarAsistencias(int asissts);
 };
 
 #endif // JUGADOR_H
