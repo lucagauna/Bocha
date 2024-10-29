@@ -233,28 +233,27 @@
 1730126783 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
 	<iostream>
 
-1729185336 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
+1730139686 source:c:\users\luka\desktop\proyecto\bocha\equipos.cpp
 	"equipos.h"
 	<iostream>
 	<cstring>
 
-1729185336 c:\users\luka\desktop\proyecto\bocha\equipos.h
+1730139686 c:\users\luka\desktop\proyecto\bocha\equipos.h
 	<iostream>
 	<vector>
-	"jugador.h"
 
-1729776453 c:\users\luka\desktop\proyecto\bocha\jugador.h
+1730139686 c:\users\luka\desktop\proyecto\bocha\jugador.h
 	<iostream>
 
-1729776478 source:c:\users\luka\desktop\proyecto\bocha\jugador.cpp
+1730207158 source:c:\users\luka\desktop\proyecto\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
 	<cstring>
 
-1729776282 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
+1730139686 source:c:\users\luka\desktop\proyecto\bocha\main.cpp
 	<iostream>
 	<cstring>
-	"funciones.h"
+	"menu.h"
 	"jugador.h"
 	"equipos.h"
 
@@ -265,6 +264,16 @@
 	<iostream>
 
 1730137289 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
+	"menu.h"
+	"equipos.h"
+	"jugador.h"
+	<iostream>
+	<cstring>
+
+1730139686 c:\users\luka\desktop\proyecto\bocha\menu.h
+	<iostream>
+
+1730207158 source:c:\users\luka\desktop\proyecto\bocha\menu.cpp
 	"menu.h"
 	"equipos.h"
 	"jugador.h"

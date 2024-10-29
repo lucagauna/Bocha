@@ -52,6 +52,7 @@ public:
     Jugador listarJugador(const char* nombreJugador);
     bool mostrarJugadores();
     Jugador listarJugador(int pos);
+    void busquedadAvanzada()
 };
 
 #endif // JUGADOR_H

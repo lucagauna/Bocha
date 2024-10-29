@@ -7,7 +7,7 @@ using namespace std;
 
 void Menu::mostrarMenu() {
     Menu submenues;
-    int opcion;
+    int opcion = -1;
     while(opcion!=0){
     system("cls");
         cout << "======================" << endl;
@@ -31,7 +31,7 @@ void Menu::mostrarMenu() {
 }
 
 void Menu::menuEquipos(){
-    int opcion;
+    int opcion = -1;
     Equipo reg;
     archivoEquipo listado("Equipos.dat");
     char equipo[50]={0};
@@ -138,7 +138,7 @@ void Menu::menuJugadores(){
             system("cls");
             cout << "Ingrese el jugador a buscar: ";
             cin.getline(jugador,50);
-            reg = listado.listarJugador(jugador);
+            reg = listado.listarJugador(jugador);           /// Cuando buscas un wachin te dice q no lo encontro y t tira las stats con basura
             reg.mostrarJugador();
             system("pause");
             break;
