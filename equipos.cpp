@@ -313,18 +313,15 @@ Equipo archivoEquipo::buscarPlantel(int quantity){
     punteroFile=fopen(nombre, "rb");
     if(punteroFile==nullptr){return reg;}
     while(fread(&name,sizeof(char),50,punteroFile)==50){
-        encontrado=false;
         reg.setNombre(name);
         fread(&plantel,sizeof(int),1,punteroFile);
         reg.setPlantel(plantel);
-        if(quantity==plantel){
-        encontrado = true;
-        }
         for(int i=0; i<plantel; i++){
             fread(&jugador,sizeof(char),50,punteroFile);
             reg.setJugador(i,jugador);
         }
-        if(encontrado){
+        if(quantity==plantel){
+            encontrado = true;
             reg.mostrarEquipo();
         }
 

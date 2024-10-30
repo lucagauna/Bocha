@@ -218,7 +218,7 @@
 1730295014 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
 	<iostream>
 
-1730295309 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
+1730295775 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
 	<cstring>
@@ -263,7 +263,7 @@
 1730295708 c:\users\facuc\desktop\proyecto_github\bocha\menu.h
 	<iostream>
 
-1730295719 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
+1730295931 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
 	"menu.h"
 	"equipos.h"
 	"jugador.h"
