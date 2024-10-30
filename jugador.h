@@ -52,6 +52,12 @@ public:
     bool eliminarJugador(const char* nombreJugador);
     bool modificarJugador(Jugador jugador);
     bool mostrarJugadores();
+    bool ordenadosNombre(bool valor);
+    bool ordenadosEquipo(bool valor);
+    bool ordenadosEdad(bool valor);
+    bool ordenadosDorsal(bool valor);
+    bool ordenadosGoles(bool valor);
+    bool ordenadosAsistencias(bool valor);
     Jugador buscarJugador(const char* nombreJugador);
     Jugador buscarEquipo(const char* equipo);
     Jugador buscarEdad(int age);

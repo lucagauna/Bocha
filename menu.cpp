@@ -6,12 +6,11 @@
 using namespace std;
 
 void Menu::mostrarMenu() {
-    Menu submenues;
     int opcion = -1;
     while(opcion!=0){
     system("cls");
         cout << "======================" << endl;
-        cout << "       BOCHA1.0V   "  << endl;
+        cout << "       BOCHA1.1V   "  << endl;
         cout << "======================" << endl;
         cout << "1. EQUIPOS" << endl;
         cout << "2. JUGADORES" <<endl;
@@ -21,10 +20,10 @@ void Menu::mostrarMenu() {
         cin >> opcion;
         switch(opcion){
         case 1:
-            submenues.menuEquipos();
+            menuEquipos();
             break;
         case 2:
-            submenues.menuJugadores();
+            menuJugadores();
             break;
         }
     }
@@ -32,7 +31,6 @@ void Menu::mostrarMenu() {
 
 void Menu::menuEquipos(){
     int opcion=-1;
-    Menu menu;
     Equipo reg;
     archivoEquipo listado("Equipos.dat");
     char equipo[50]={0};
@@ -46,6 +44,7 @@ void Menu::menuEquipos(){
         cout << "3. MODIFICAR" <<endl;
         cout << "4. LISTAR" <<endl;
         cout << "5. BUSCAR" <<endl;
+        cout << "6. ORDENAR" <<endl;
         cout << "0. Volver" << endl;
         cout << "======================" << endl;
         cout << "OPCION: ";
@@ -78,7 +77,11 @@ void Menu::menuEquipos(){
             break;
         case 5:
             system("cls");
-            menu.subMenuEquipos();
+            subMenuEquipos();
+            break;
+        case 6:
+            system("cls");
+            subMenuOrdenarEquipos();
             break;
         }
     }
@@ -127,15 +130,58 @@ void Menu::subMenuEquipos(){
             listado.buscarPlantel(numero);
             system("pause");
             break;
+        }
     }
+}
+
+void Menu::subMenuOrdenarEquipos(){
+    int opcion=-1;
+    Equipo reg;
+    archivoEquipo listado("Equipos.dat");
+    while(opcion!=0){
+    system("cls");
+        cout << "======================" << endl;
+        cout << "       ORDENAR   "  << endl;
+        cout << "======================" << endl;
+        cout << "1. POR EQUIPO (A,Z)" << endl;
+        cout << "2. POR EQUIPO (Z,A)" << endl;
+        cout << "3. POR PLANTEL (Menor a Mayor)" <<endl;
+        cout << "4. POR PLANTEL (Mayor a menor)" <<endl;
+        cout << "0. Volver" << endl;
+        cout << "======================" << endl;
+        cout << "OPCION: ";
+        cin >> opcion;
+        cin.ignore();
+        switch(opcion){
+        case 1:
+            system("cls");
+            listado.ordenadosEquipo(0);
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            listado.ordenadosEquipo(1);
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            listado.ordenadosPlantel(0);
+            system("pause");
+            break;
+        case 4:
+            system("cls");
+            listado.ordenadosPlantel(1);
+            system("pause");
+            break;
+        }
     }
 }
 
 void Menu::menuJugadores(){
     int opcion=-1;
+    char jugador[50];
     Jugador reg;
     archivoJugador listado("Jugadores.dat");
-    char jugador[50]={0};
     while(opcion!=0){
     system("cls");
         cout << "======================" << endl;
@@ -146,6 +192,7 @@ void Menu::menuJugadores(){
         cout << "3. MODIFICAR" <<endl;
         cout << "4. LISTAR" <<endl;
         cout << "5. BUSCAR" <<endl;
+        cout << "6. ORDENAR" <<endl;
         cout << "0. Volver" << endl;
         cout << "======================" << endl;
         cout << "OPCION: ";
@@ -180,6 +227,10 @@ void Menu::menuJugadores(){
             /// SUBMENU PARA FUNCIONES DE BUSCAR
             system("cls");
             subMenuJugadores();
+            break;
+        case 6:
+            system("cls");
+            subMenuOrdenarJugadores();
             break;
         }
     }
@@ -257,6 +308,97 @@ void Menu::subMenuJugadores(){
             cout << "Ingrese las asistencias a buscar: ";
             cin >> numero;
             listado.buscarAsistencias(numero);
+            system("pause");
+            break;
+        }
+    }
+}
+
+void Menu::subMenuOrdenarJugadores(){
+    int opcion=-1;
+    Equipo reg;
+    archivoJugador listado("Jugadores.dat");
+    while(opcion!=0){
+    system("cls");
+        cout << "======================" << endl;
+        cout << "       ORDENAR   "  << endl;
+        cout << "======================" << endl;
+        cout << "1. POR NOMBRE (A,Z)" << endl;
+        cout << "2. POR NOMBRE (Z,A)" << endl;
+        cout << "3. POR EQUIPO (A,Z)" <<endl;
+        cout << "4. POR EQUIPO (Z,A)" <<endl;
+        cout << "5. POR EDAD (Menor a Mayor)" << endl;
+        cout << "6. POR EDAD (Mayor a Menor)" << endl;
+        cout << "7. POR DORSAL (Menor a Mayor)" <<endl;
+        cout << "8. POR DORSAL (Mayor a menor)" <<endl;
+        cout << "9. POR GOLES (Menor a Mayor)" << endl;
+        cout << "10. POR GOLES (Mayor a menor)" << endl;
+        cout << "11. POR ASISTENCIAS (Menor a Mayor)" <<endl;
+        cout << "12. POR ASISTENCIAS (Mayor a menor)" <<endl;
+        cout << "0. Volver" << endl;
+        cout << "======================" << endl;
+        cout << "OPCION: ";
+        cin >> opcion;
+        cin.ignore();
+        switch(opcion){
+        case 1:
+            system("cls");
+            listado.ordenadosNombre(0);
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            listado.ordenadosNombre(1);
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            listado.ordenadosEquipo(0);
+            system("pause");
+            break;
+        case 4:
+            system("cls");
+            listado.ordenadosEquipo(1);
+            system("pause");
+            break;
+        case 5:
+            system("cls");
+            listado.ordenadosEdad(0);
+            system("pause");
+            break;
+        case 6:
+            system("cls");
+            listado.ordenadosEdad(1);
+            system("pause");
+            break;
+        case 7:
+            system("cls");
+            listado.ordenadosDorsal(0);
+            system("pause");
+            break;
+        case 8:
+            system("cls");
+            listado.ordenadosDorsal(1);
+            system("pause");
+            break;
+        case 9:
+            system("cls");
+            listado.ordenadosGoles(0);
+            system("pause");
+            break;
+        case 10:
+            system("cls");
+            listado.ordenadosGoles(1);
+            system("pause");
+            break;
+        case 11:
+            system("cls");
+            listado.ordenadosAsistencias(0);
+            system("pause");
+            break;
+        case 12:
+            system("cls");
+            listado.ordenadosAsistencias(1);
             system("pause");
             break;
         }

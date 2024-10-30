@@ -45,6 +45,8 @@ public:
     bool modificarRegistro(Equipo club);
     ///bool buscarRegistro();
     bool mostrarRegistro();
+    bool ordenadosEquipo(bool valor);
+    bool ordenadosPlantel(bool valor);
     Equipo buscarEquipo(const char* team);
     Equipo buscarJugador(const char* player);
     Equipo buscarPlantel(int quantity);

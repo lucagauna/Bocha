@@ -10,8 +10,10 @@ public:
     void mostrarMenu();
     void menuEquipos();
     void subMenuEquipos();
+    void subMenuOrdenarEquipos();
     void menuJugadores();
     void subMenuJugadores();
+    void subMenuOrdenarJugadores();
 };
 
 #endif // FUNCIONES_H

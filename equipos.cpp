@@ -338,116 +338,198 @@ Equipo archivoEquipo::buscarPlantel(int quantity){
     return reg;
 }
 
-/*bool  archivoEquipo::buscarRegistro(){
-    FILE* punteroFile;
-    Equipo reg;
-    char nombreEquipo[50] = {0};
-    char jugador[50] = {0};
-    int plantel;
-    char nombreBuscado[50];
 
-    cout << "Ingrese el nombre del equipo a buscar: ";
-    cin.getline(nombreBuscado, 50);
-
-    punteroFile = fopen(nombre,"rb");
-    if (punteroFile == nullptr){return 0;}
-    while(fread(&nombreEquipo,sizeof(char),50, punteroFile)== 50){
-        if(strcmp(nombreEquipo, nombreBuscado)== 0){
-            fread(&plantel, sizeof(int),1,punteroFile);
-            reg.setNombre(nombreEquipo);
-            reg.setPlantel(plantel);
-
-            for(int i = 0; i < plantel; i++){
-                fread(&jugador,sizeof(char), 50,punteroFile);
-                reg.setJugador(i, jugador);
-            }
-                reg.mostrarEquipo();
-                fclose(punteroFile);
-                return true;
-        } else {
-        fread(&plantel,sizeof(int),1,punteroFile );
-        for(int i = 0; i < plantel; i++){
-            fread(&jugador,sizeof(char),50,punteroFile);
-        }
-    }
-
-
-    }
-
-    cout<<"EQUIPO NO ENCONTRADO..."<<endl;
-    fclose(punteroFile);
-    return false;
-
-}
-*/
-
-
-
-/*Equipo archivoEquipo::buscar(const char* team){
-    FILE* punteroFile;
-    Equipo reg;
+bool archivoEquipo::ordenadosEquipo(bool valor){
+    FILE *punteroFile,*punteroTemp;
+    Equipo *reg;
+    Equipo temp;
+    int iteraciones=0;
+    int x=0;
     char name[50]={0};
     char jugador[50]={0};
-    int plantel;
-    bool encontrado = false;
-    punteroFile=fopen(nombre, "rb");
-    if(punteroFile==nullptr){return reg;}
+    int plantel=0;
+
+    punteroFile = fopen(nombre, "rb");
+    if(punteroFile==nullptr){return 0;}
+
+    punteroTemp=fopen("temp.dat", "wb");
+    if(punteroTemp==nullptr){return 0;}
+
     while(fread(&name,sizeof(char),50,punteroFile)==50){
-        if(busqueda==0){
-            if(strcmp(team, name)==0){
-                encontrado = true;
-                reg.setNombre(name);
-                fread(&plantel,sizeof(int),1,punteroFile);
-                reg.setPlantel(plantel);
-                for(int i=0; i<plantel; i++){
-                    fread(&jugador,sizeof(char),50,punteroFile);
-                    reg.setJugador(i,jugador);
+        fread(&plantel,sizeof(int),1,punteroFile);
+        for(int i=0; i<plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+        }
+        iteraciones++;
+    }
+
+    fseek(punteroFile,0,0);
+
+    reg = new Equipo[iteraciones];
+
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        reg[x].setNombre(name);
+        fread(&plantel,sizeof(int),1,punteroFile);
+        reg[x].setPlantel(plantel);
+        for(int i=0; i<plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+            reg[x].setJugador(i,jugador);
+        }
+        x++;
+    }
+
+    if(valor==0){
+
+        for(int i=0; i<iteraciones-1; i++){
+            for(int y=i+1; y<iteraciones; y++){
+                if(strcmp(reg[i].getNombre().c_str(),reg[y].getNombre().c_str())>0){
+                    temp = reg[i];
+                    reg[i] = reg[y];
+                    reg[y] = temp;
                 }
-                fclose(punteroFile);
-                return reg;
-            } else {
-            fread(&plantel,sizeof(int),1,punteroFile);
-                for(int i=0; i<plantel; i++){
-                    fread(&jugador,sizeof(char),50,punteroFile);
+            }
+        }
+        for(int i=0; i<iteraciones; i++){
+            strncpy(name, reg[i].getNombre().c_str(), 49 );
+            fwrite(&name,sizeof(char),50,punteroTemp);
+            plantel = reg[i].getPlantel();
+            fwrite(&plantel,sizeof(int),1,punteroTemp);
+            for(int z=0; z <plantel; z++){
+                strncpy(jugador, reg[i].getJugador(z).c_str(), 49);
+                fwrite(&jugador,sizeof(char),50,punteroTemp);
+                //cout << jugador;
+                //cout << "sas";
+            }
+        }
+    } else if (valor==1){
+        for(int i=0; i<iteraciones-1; i++){
+            for(int y=i+1; y<iteraciones; y++){
+                if(strcmp(reg[i].getNombre().c_str(),reg[y].getNombre().c_str())<0){
+                    temp = reg[i];
+                    reg[i] = reg[y];
+                    reg[y] = temp;
                 }
             }
-        } else if(busqueda==1){
-            reg.setNombre(name);
-            fread(&plantel,sizeof(int),1,punteroFile);
-            reg.setPlantel(plantel);
-            for(int i=0; i<plantel; i++){
-                fread(&jugador,sizeof(char),50,punteroFile);
-                reg.setJugador(i,jugador);
-                if(strcmp(player, jugador)==0){
-                    encontrado = true;
-                }
-            }
-            if(encontrado){
-                fclose(punteroFile);
-                return reg;
-            }
-        } else if (busqueda==2){
-            encontrado=false;
-            reg.setNombre(name);
-            fread(&plantel,sizeof(int),1,punteroFile);
-            reg.setPlantel(plantel);
-            if(quantity==plantel){
-                encontrado = true;
-            }
-            for(int i=0; i<plantel; i++){
-                fread(&jugador,sizeof(char),50,punteroFile);
-                reg.setJugador(i,jugador);
-            }
-            if(encontrado){
-                reg.mostrarEquipo();
+        }
+        for(int i=0; i<iteraciones; i++){
+            strncpy(name, reg[i].getNombre().c_str(), 49 );
+            fwrite(&name,sizeof(char),50,punteroTemp);
+            plantel = reg[i].getPlantel();
+            fwrite(&plantel,sizeof(int),1,punteroTemp);
+            for(int z=0; z <plantel; z++){
+                strncpy(jugador, reg[i].getJugador(z).c_str(), 49);
+                fwrite(&jugador,sizeof(char),50,punteroTemp);
+                //cout << jugador;
+                //cout << "sas";
             }
         }
     }
 
-    if(!encontrado){
-        cout << "Equipo no encontrado..." <<endl;
-    }
 
     fclose(punteroFile);
-    return reg;
-}*/
+    fclose(punteroTemp);
+
+    remove(nombre);
+    rename("temp.dat",nombre);
+
+    delete[] reg;
+
+    return 1;
+}
+bool archivoEquipo::ordenadosPlantel(bool valor){
+    FILE *punteroFile,*punteroTemp;
+    Equipo *reg;
+    Equipo temp;
+    int iteraciones=0;
+    int x=0;
+    char name[50]={0};
+    char jugador[50]={0};
+    int plantel=0;
+
+    punteroFile = fopen(nombre, "rb");
+    if(punteroFile==nullptr){return 0;}
+
+    punteroTemp=fopen("temp.dat", "wb");
+    if(punteroTemp==nullptr){return 0;}
+
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&plantel,sizeof(int),1,punteroFile);
+        for(int i=0; i<plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+        }
+        iteraciones++;
+    }
+
+    fseek(punteroFile,0,0);
+
+    reg = new Equipo[iteraciones];
+
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        reg[x].setNombre(name);
+        fread(&plantel,sizeof(int),1,punteroFile);
+        reg[x].setPlantel(plantel);
+        for(int i=0; i<plantel; i++){
+            fread(&jugador,sizeof(char),50,punteroFile);
+            reg[x].setJugador(i,jugador);
+        }
+        x++;
+    }
+
+    if(valor==0){
+
+        for(int i=0; i<iteraciones-1; i++){
+            for(int y=i+1; y<iteraciones; y++){
+                if(reg[i].getPlantel()>reg[y].getPlantel()){
+                    temp = reg[i];
+                    reg[i] = reg[y];
+                    reg[y] = temp;
+                }
+            }
+        }
+        for(int i=0; i<iteraciones; i++){
+            strncpy(name, reg[i].getNombre().c_str(), 49 );
+            fwrite(&name,sizeof(char),50,punteroTemp);
+            plantel = reg[i].getPlantel();
+            fwrite(&plantel,sizeof(int),1,punteroTemp);
+            for(int z=0; z <plantel; z++){
+                strncpy(jugador, reg[i].getJugador(z).c_str(), 49);
+                fwrite(&jugador,sizeof(char),50,punteroTemp);
+                //cout << jugador;
+                //cout << "sas";
+            }
+        }
+    } else if (valor==1){
+        for(int i=0; i<iteraciones-1; i++){
+            for(int y=i+1; y<iteraciones; y++){
+                if(reg[i].getPlantel()<reg[y].getPlantel()){
+                    temp = reg[i];
+                    reg[i] = reg[y];
+                    reg[y] = temp;
+                }
+            }
+        }
+        for(int i=0; i<iteraciones; i++){
+            strncpy(name, reg[i].getNombre().c_str(), 49 );
+            fwrite(&name,sizeof(char),50,punteroTemp);
+            plantel = reg[i].getPlantel();
+            fwrite(&plantel,sizeof(int),1,punteroTemp);
+            for(int z=0; z <plantel; z++){
+                strncpy(jugador, reg[i].getJugador(z).c_str(), 49);
+                fwrite(&jugador,sizeof(char),50,punteroTemp);
+                //cout << jugador;
+                //cout << "sas";
+            }
+        }
+    }
+
+
+    fclose(punteroFile);
+    fclose(punteroTemp);
+
+    remove(nombre);
+    rename("temp.dat",nombre);
+
+    delete[] reg;
+
+    return 1;
+}
