@@ -14,6 +14,7 @@ public:
     void menuJugadores();
     void subMenuJugadores();
     void subMenuOrdenarJugadores();
+    void menuCompetencias();
 };
 
 #endif // FUNCIONES_H

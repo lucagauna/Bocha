@@ -31,6 +31,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="competencia.cpp" />
+		<Unit filename="competencia.h" />
 		<Unit filename="equipos.cpp" />
 		<Unit filename="equipos.h" />
 		<Unit filename="jugador.cpp" />

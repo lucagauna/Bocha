@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "equipos.h"
 #include "jugador.h"
+#include "competencia.h"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -14,6 +15,7 @@ void Menu::mostrarMenu() {
         cout << "======================" << endl;
         cout << "1. EQUIPOS" << endl;
         cout << "2. JUGADORES" <<endl;
+        cout << "3. COMPETENCIAS" << endl;
         cout << "0. Salir" << endl;
         cout << "======================" << endl;
         cout << "OPCION: ";
@@ -24,6 +26,9 @@ void Menu::mostrarMenu() {
             break;
         case 2:
             menuJugadores();
+            break;
+        case 3:
+            menuCompetencias();
             break;
         }
     }
@@ -425,3 +430,52 @@ void Menu::subMenuOrdenarJugadores(){
         }
     }
 }
+
+void Menu::menuCompetencias(){
+    Competencia reg;
+    archivoCompetencia listado("Competencias.dat");
+    char nombre[50]={0};
+    int opcion = -1;
+    while(opcion!=0){
+        system("cls");
+        cout << "======================" << endl;
+        cout << "       COMPETENCIAS   "  << endl;
+        cout << "======================" << endl;
+        cout << "1. AGREGAR" << endl;
+        cout << "2. ELIMINAR" <<endl;
+        cout << "3. MODIFCAR" <<endl;
+        cout << "4. LISTAR" <<endl;
+        cout << "0. Volver" << endl;
+        cout << "======================" << endl;
+        cout << "OPCION: ";
+        cin >> opcion;
+        cin.ignore();
+        switch(opcion){
+        case 1:
+            system ("cls");
+            reg.cargar();
+            listado.agregarCompetencia(reg);
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            cout << "Ingrese nombre de la competencia: ";
+            cin.getline(nombre,49);
+            listado.eliminarCompetencia(nombre);
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            reg.cargar();
+            listado.modificarCompetencia(reg);
+            system("pause");
+            break;
+        case 4:
+            system ("cls");
+            listado.listarCompetencia();
+            system("pause");
+            break;
+        }
+    }
+}
+

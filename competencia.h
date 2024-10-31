@@ -12,18 +12,20 @@ private:
     int numEquipo;
 public:
 
-    Competencia();
 
-   string getCompetencia();
-   string getEquipo(int i);
-   int getNumEquipo();
 
-   void setCompetencia(const string& valor);
+    void cargar();
 
-   void setEquipo(int i, string& valor);
+    string getCompetencia();
+    string getEquipo(int i);
+    int getNumEquipo();
 
-   void agregarEquipo(string& nombreEquipo);
-   void mostrarCompetencia();
+    void setCompetencia(const string& valor);
+    void setEquipo(int i, char* valor);
+    void setNumEquipo(int valor);
+
+    void agregarEquipo(string& nombreEquipo);
+    void mostrarCompetencia();
 
 
 };
@@ -38,7 +40,7 @@ public:
     bool agregarCompetencia(Competencia reg);
     bool eliminarCompetencia(char* nombreCompetencia);
     bool modificarCompetencia(Competencia reg);
-    bool mostrarCompetencia();
+    bool listarCompetencia();
     Competencia buscarCompetencia(char* nombreCompetencia);
 
 };

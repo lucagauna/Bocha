@@ -223,12 +223,14 @@
 	<iostream>
 	<cstring>
 
-1730393029 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
+1730410832 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
 	<iostream>
 	<cstring>
+	"competencia.h"
 	"menu.h"
 	"jugador.h"
 	"equipos.h"
+	"competencia.h"
 
 1730126783 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
 	<iostream>
@@ -261,13 +263,14 @@
 1729567827 c:\users\luka\desktop\proyecto\bocha\funciones.h
 	<iostream>
 
-1730295708 c:\users\facuc\desktop\proyecto_github\bocha\menu.h
+1730408788 c:\users\facuc\desktop\proyecto_github\bocha\menu.h
 	<iostream>
 
-1730392741 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
+1730415456 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
 	"menu.h"
 	"equipos.h"
 	"jugador.h"
+	"competencia.h"
 	<iostream>
 	<cstring>
 
@@ -289,4 +292,13 @@
 	"competencia.h"
 	<iostream>
 	<cstring>
+
+1730416138 source:c:\users\facuc\desktop\proyecto_github\bocha\competencia.cpp
+	"competencia.h"
+	<iostream>
+	<cstring>
+
+1730412364 c:\users\facuc\desktop\proyecto_github\bocha\competencia.h
+	<iostream>
+	<string>
 

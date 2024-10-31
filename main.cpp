@@ -4,6 +4,7 @@
 #include "menu.h"
 #include "jugador.h"
 #include "equipos.h"
+#include "competencia.h"
 
 
 /// MODO DE BUSQUEDA ============
@@ -15,18 +16,18 @@
 using namespace std;
 
 int main() {
-   // Menu menu;
+    Menu menu;
     //Equipo club;
     //Jugador jugador;
     //archivoEquipo reg("Equipos.dat");
     //archivoJugador lol("Jugadores.dat");
 
-    //menu.mostrarMenu();
+    menu.mostrarMenu();
 
-    archivoCompetencia archivo("Competencias.dat");
+    /*archivoCompetencia archivo("Competencias.dat");
     Competencia nuevaCompetencia;
     archivo.agregarCompetencia(nuevaCompetencia);
-
+*/
 
 
 
