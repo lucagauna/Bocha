@@ -7,6 +7,7 @@ using namespace std;
 Jugador::Jugador(){
     nombre="Undefined";
     equipo="Undefined";
+    idJugador = -1;
     edad=-1;
     posicion="Undefined";
     numero=-1;
@@ -43,6 +44,16 @@ void Jugador::cargar(){
             getline(cin,nombre);
         }
     }
+
+    cout << "Ingrese el ID del Jugador: ";
+    cin >> idJugador;
+
+    if(idJugador<=0){
+        cout << "Reingrese el ID del Jugador: ";
+        cin >> idJugador;
+    }
+
+    cin.ignore();
 
     cout<<"Ingrese el equipo del Jugador: ";
     getline(cin,equipo);
@@ -107,35 +118,43 @@ void Jugador::cargar(){
 
 }
 // Getters
-string Jugador::getNombre() const {
+int Jugador::getIdJugador(){
+    return idJugador;
+}
+
+string Jugador::getNombre(){
     return nombre;
 }
 
-string Jugador::getEquipo() const {
+string Jugador::getEquipo(){
     return equipo;
 }
 
-int Jugador::getEdad() const {
+int Jugador::getEdad(){
     return edad;
 }
 
-string Jugador::getPosicion() const {
+string Jugador::getPosicion(){
     return posicion;
 }
 
-int Jugador::getNumero() const {
+int Jugador::getNumero(){
     return numero;
 }
 
-int Jugador::getGoles() const {
+int Jugador::getGoles(){
     return goles;
 }
 
-int Jugador::getAsistencias() const {
+int Jugador::getAsistencias(){
     return asistencias;
 }
 
 // Setters
+void Jugador::setIdJugador(int ID){
+    idJugador=ID;
+}
+
 void Jugador::setNombre(string nombre) {
     this->nombre = nombre;
 }
@@ -188,6 +207,7 @@ void Jugador::setNumero(int numero) {
 
 void Jugador::mostrarJugador() const {
     cout << "Nombre: " << nombre << endl;
+    cout << "ID: " << idJugador <<endl;
     cout << "Equipo: " << equipo << endl;
     cout << "Edad: " << edad << endl;
     cout << "Posicion: " << posicion << endl;
@@ -205,6 +225,8 @@ bool archivoJugador::agregarJugador(Jugador jugador){
     FILE *punteroFile;
 
     char name[50] = {0};
+    int ID=0;
+    int n;
     char team[50] = {0};
     char position[50] = {0};
     int age = 0;
@@ -227,6 +249,12 @@ bool archivoJugador::agregarJugador(Jugador jugador){
             cout << "Jugador ya ingresado..." <<endl;
             return 0;
         }
+        fread(&ID,sizeof(int),1,punteroFile);
+        while(ID == jugador.getIdJugador() ||  jugador.getIdJugador()<=0){
+            cout << "Reingresar el ID del jugador: ";
+            cin >> n;
+            jugador.setIdJugador(n);
+        }
         fread(&team,sizeof(char),50,punteroFile);
         fread(&age,sizeof(int),1,punteroFile);
         fread(&position,sizeof(char),50,punteroFile);
@@ -242,6 +270,9 @@ bool archivoJugador::agregarJugador(Jugador jugador){
 
     strncpy(name, jugador.getNombre().c_str(), 49);
     fwrite(&name, sizeof(char), 50, punteroFile);
+
+    ID = jugador.getIdJugador();
+    fwrite(&ID,sizeof(int),1,punteroFile);
 
     strncpy(team, jugador.getEquipo().c_str(), 49);
     fwrite(&team, sizeof(char), 50, punteroFile);
@@ -270,6 +301,7 @@ bool archivoJugador::eliminarJugador(const char* nombreJugador) {
     FILE *punteroFile, *punteroTemp;
     Jugador jugador;
     char team[50]={0};
+    int ID;
     char nombre[50] = {0};
     char posicion[50]={0};
     bool encontrado = false;
@@ -283,6 +315,8 @@ bool archivoJugador::eliminarJugador(const char* nombreJugador) {
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
         if (strcmp(nombre, nombreJugador) != 0) {
             fwrite(&nombre, sizeof(char), 50, punteroTemp);
+            fread(&ID,sizeof(int),1,punteroFile);
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             fread(&team, sizeof(char), 50, punteroFile);
             fwrite(&team, sizeof(char), 50, punteroTemp);
             fread(&edad, sizeof(int), 1, punteroFile);
@@ -297,6 +331,7 @@ bool archivoJugador::eliminarJugador(const char* nombreJugador) {
             fwrite(&asistencias, sizeof(int), 1, punteroTemp);
         } else {
             encontrado = true;
+            fread(&ID,sizeof(int),1,punteroFile);
             fread(&team, sizeof(char), 50, punteroFile);
             fread(&edad, sizeof(int), 1, punteroFile);
             fread(&posicion, sizeof(char), 50, punteroFile);
@@ -323,6 +358,7 @@ bool archivoJugador::eliminarJugador(const char* nombreJugador) {
 bool archivoJugador::modificarJugador(Jugador jugador) {
     FILE *punteroFile, *punteroTemp;
     char nombre[50] = {0};
+    int ID;
     char posicion[50]={0};
     char team[50]={0};
     int edad, numero, goles, asistencias;
@@ -334,24 +370,22 @@ bool archivoJugador::modificarJugador(Jugador jugador) {
     if (punteroTemp == nullptr) {return false;}
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
-        if (strcmp(nombre, jugador.getNombre().c_str()) != 0) {
-            fwrite(&nombre, sizeof(char), 50, punteroTemp);
-            fread(&team, sizeof(char), 50, punteroFile);
-            fwrite(&team, sizeof(char), 50, punteroTemp);
-            fread(&edad, sizeof(int), 1, punteroFile);
-            fwrite(&edad, sizeof(int), 1, punteroTemp);
-            fread(&posicion, sizeof(char), 50, punteroFile);
-            fwrite(&posicion, sizeof(char), 50, punteroTemp);
-            fread(&numero, sizeof(int), 1, punteroFile);
-            fwrite(&numero, sizeof(int), 1, punteroTemp);
-            fread(&goles, sizeof(int), 1, punteroFile);
-            fwrite(&goles, sizeof(int), 1, punteroTemp);
-            fread(&asistencias, sizeof(int), 1, punteroFile);
-            fwrite(&asistencias, sizeof(int), 1, punteroTemp);
-        } else {
+        fread(&ID, sizeof(int), 1, punteroFile);
+        fread(&team, sizeof(char), 50, punteroFile);
+        fread(&edad, sizeof(int), 1, punteroFile);
+        fread(&posicion, sizeof(char), 50, punteroFile);
+        fread(&numero, sizeof(int), 1, punteroFile);
+        fread(&goles, sizeof(int), 1, punteroFile);
+        fread(&asistencias, sizeof(int), 1, punteroFile);
+
+        if (strcmp(nombre, jugador.getNombre().c_str()) == 0) {
             encontrado = true;
+
             strncpy(nombre, jugador.getNombre().c_str(), 49);
             fwrite(&nombre, sizeof(char), 50, punteroTemp);
+
+            ID = jugador.getIdJugador();
+            fwrite(&ID, sizeof(int), 1, punteroTemp);
 
             strncpy(team, jugador.getEquipo().c_str(), 49);
             fwrite(&team, sizeof(char), 50, punteroTemp);
@@ -364,17 +398,22 @@ bool archivoJugador::modificarJugador(Jugador jugador) {
 
             numero = jugador.getNumero();
             fwrite(&numero, sizeof(int), 1, punteroTemp);
+
             goles = jugador.getGoles();
             fwrite(&goles, sizeof(int), 1, punteroTemp);
+
             asistencias = jugador.getAsistencias();
             fwrite(&asistencias, sizeof(int), 1, punteroTemp);
-
-            fread(&team, sizeof(char), 50, punteroFile);
-            fread(&edad, sizeof(int), 1, punteroFile);
-            fread(&posicion, sizeof(char), 50, punteroFile);
-            fread(&numero, sizeof(int), 1, punteroFile);
-            fread(&goles, sizeof(int), 1, punteroFile);
-            fread(&asistencias, sizeof(int), 1, punteroFile);
+        } else {
+            // Escribir registro sin cambios en temp.dat
+            fwrite(&nombre, sizeof(char), 50, punteroTemp);
+            fwrite(&ID, sizeof(int), 1, punteroTemp);
+            fwrite(&team, sizeof(char), 50, punteroTemp);
+            fwrite(&edad, sizeof(int), 1, punteroTemp);
+            fwrite(&posicion, sizeof(char), 50, punteroTemp);
+            fwrite(&numero, sizeof(int), 1, punteroTemp);
+            fwrite(&goles, sizeof(int), 1, punteroTemp);
+            fwrite(&asistencias, sizeof(int), 1, punteroTemp);
         }
     }
 
@@ -397,6 +436,7 @@ bool archivoJugador::mostrarJugadores(){
     if(punteroFile==nullptr){return 0;}
     Jugador reg;
     char name[50]={0};
+    int ID;
     char team[50]={0};
     int age=0;
     char position[50]={0};
@@ -406,6 +446,8 @@ bool archivoJugador::mostrarJugadores(){
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg.setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg.setIdJugador(ID);
         fread(&team,sizeof(char),50,punteroFile);
         reg.setEquipo(team);
         fread(&age,sizeof(int),1,punteroFile);
@@ -427,7 +469,9 @@ bool archivoJugador::mostrarJugadores(){
 Jugador archivoJugador::buscarJugador(const char* nombreJugador){
     FILE *punteroFile;
     Jugador reg;
+    Jugador fallo;
     char nombre[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -437,6 +481,8 @@ Jugador archivoJugador::buscarJugador(const char* nombreJugador){
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
             reg.setNombre(nombre);
+            fread(&ID,sizeof(int),1,punteroFile);
+            reg.setIdJugador(ID);
             fread(&team, sizeof(char), 50, punteroFile);
             reg.setEquipo(team);
             fread(&edad, sizeof(int), 1, punteroFile);
@@ -457,13 +503,54 @@ Jugador archivoJugador::buscarJugador(const char* nombreJugador){
 
     cout << "Jugador no encontrado..." << endl;
     fclose(punteroFile);
-    return reg;
+    return fallo;
+}
+
+Jugador archivoJugador::buscarID(int num){
+    FILE *punteroFile;
+    Jugador reg;
+    Jugador fallo;
+    char nombre[50] = {0};
+    int ID;
+    char posicion[50] = {0};
+    char team[50] = {0};
+    int edad, numero, goles, asistencias;
+
+    punteroFile = fopen("Jugadores.dat", "rb");
+    if (punteroFile == nullptr) {return reg;};
+
+    while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+            reg.setNombre(nombre);
+            fread(&ID,sizeof(int),1,punteroFile);
+            reg.setIdJugador(ID);
+            fread(&team, sizeof(char), 50, punteroFile);
+            reg.setEquipo(team);
+            fread(&edad, sizeof(int), 1, punteroFile);
+            reg.setEdad(edad);
+            fread(&posicion, sizeof(char), 50, punteroFile);
+            reg.setPosicion(posicion);
+            fread(&numero, sizeof(int), 1, punteroFile);
+            reg.setNumero(numero);
+            fread(&goles, sizeof(int), 1, punteroFile);
+            reg.setGoles(goles);
+            fread(&asistencias, sizeof(int), 1, punteroFile);
+            reg.setAsistencias(asistencias);
+        if (num == reg.getIdJugador()) {
+            fclose(punteroFile);
+            return reg;
+        }
+    }
+
+    cout << "Jugador no encontrado..." << endl;
+    fclose(punteroFile);
+    return fallo;
 }
 
 Jugador archivoJugador::buscarEquipo(const char* equipo){
     FILE *punteroFile;
     Jugador reg;
     char nombre[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -475,6 +562,8 @@ Jugador archivoJugador::buscarEquipo(const char* equipo){
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
             encontrado=false;
             reg.setNombre(nombre);
+            fread(&ID,sizeof(int),1,punteroFile);
+            reg.setIdJugador(ID);
             fread(&team, sizeof(char), 50, punteroFile);
             reg.setEquipo(team);
             fread(&edad, sizeof(int), 1, punteroFile);
@@ -504,6 +593,7 @@ Jugador archivoJugador::buscarEdad(int age){
     FILE *punteroFile;
     Jugador reg;
     char nombre[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -513,7 +603,7 @@ Jugador archivoJugador::buscarEdad(int age){
     if (punteroFile == nullptr) {return reg;};
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
-
+            fread(&ID,sizeof(int),1,punteroFile);
             fread(&team, sizeof(char), 50, punteroFile);
             fread(&edad, sizeof(int), 1, punteroFile);
             fread(&posicion, sizeof(char), 50, punteroFile);
@@ -524,6 +614,7 @@ Jugador archivoJugador::buscarEdad(int age){
             encontrado=true;
 
             reg.setNombre(nombre);
+            reg.setIdJugador(ID);
             reg.setEquipo(team);
             reg.setEdad(edad);
             reg.setPosicion(posicion);
@@ -545,6 +636,7 @@ Jugador archivoJugador::buscarPosicion(const char* position){
     FILE *punteroFile;
     Jugador reg;
     char nombre[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -554,6 +646,7 @@ Jugador archivoJugador::buscarPosicion(const char* position){
     if (punteroFile == nullptr) {return reg;};
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+            fread(&ID,sizeof(int),1,punteroFile);
             fread(&team, sizeof(char), 50, punteroFile);
             fread(&edad, sizeof(int), 1, punteroFile);
             fread(&posicion, sizeof(char), 50, punteroFile);
@@ -564,6 +657,7 @@ Jugador archivoJugador::buscarPosicion(const char* position){
             encontrado=true;
 
             reg.setNombre(nombre);
+            reg.setIdJugador(ID);
             reg.setEquipo(team);
             reg.setEdad(edad);
             reg.setPosicion(posicion);
@@ -584,6 +678,7 @@ Jugador archivoJugador::buscarDorsal(int dorsal){
     FILE *punteroFile;
     Jugador reg;
     char nombre[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -593,6 +688,7 @@ Jugador archivoJugador::buscarDorsal(int dorsal){
     if (punteroFile == nullptr) {return reg;};
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+            fread(&ID,sizeof(int),1,punteroFile);
             fread(&team, sizeof(char), 50, punteroFile);
             fread(&edad, sizeof(int), 1, punteroFile);
             fread(&posicion, sizeof(char), 50, punteroFile);
@@ -603,6 +699,7 @@ Jugador archivoJugador::buscarDorsal(int dorsal){
             encontrado=true;
 
             reg.setNombre(nombre);
+            reg.setIdJugador(ID);
             reg.setEquipo(team);
             reg.setEdad(edad);
             reg.setPosicion(posicion);
@@ -624,6 +721,7 @@ Jugador archivoJugador::buscarGoles(int goals){
     FILE *punteroFile;
     Jugador reg;
     char nombre[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -633,6 +731,7 @@ Jugador archivoJugador::buscarGoles(int goals){
     if (punteroFile == nullptr) {return reg;};
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+            fread(&ID,sizeof(int),1,punteroFile);
             fread(&team, sizeof(char), 50, punteroFile);
             fread(&edad, sizeof(int), 1, punteroFile);
             fread(&posicion, sizeof(char), 50, punteroFile);
@@ -643,6 +742,7 @@ Jugador archivoJugador::buscarGoles(int goals){
             encontrado=true;
 
             reg.setNombre(nombre);
+            reg.setIdJugador(ID);
             reg.setEquipo(team);
             reg.setEdad(edad);
             reg.setPosicion(posicion);
@@ -664,6 +764,7 @@ Jugador archivoJugador::buscarAsistencias(int asissts){
     FILE *punteroFile;
     Jugador reg;
     char nombre[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -673,6 +774,7 @@ Jugador archivoJugador::buscarAsistencias(int asissts){
     if (punteroFile == nullptr) {return reg;};
 
     while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+            fread(&ID,sizeof(int),1,punteroFile);
             fread(&team, sizeof(char), 50, punteroFile);
             fread(&edad, sizeof(int), 1, punteroFile);
             fread(&posicion, sizeof(char), 50, punteroFile);
@@ -683,6 +785,7 @@ Jugador archivoJugador::buscarAsistencias(int asissts){
             encontrado=true;
 
             reg.setNombre(nombre);
+            reg.setIdJugador(ID);
             reg.setEquipo(team);
             reg.setEdad(edad);
             reg.setPosicion(posicion);
@@ -707,6 +810,7 @@ bool archivoJugador::ordenadosNombre(bool valor){
     int iteraciones=0;
     int x=0;
     char name[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -718,6 +822,7 @@ bool archivoJugador::ordenadosNombre(bool valor){
     if(punteroTemp==nullptr){return 0;}
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&ID,sizeof(int),1,punteroFile);
         fread(&team,sizeof(char),50,punteroFile);
         fread(&edad,sizeof(int),1,punteroFile);
         fread(&posicion,sizeof(char),50,punteroFile);
@@ -733,6 +838,8 @@ bool archivoJugador::ordenadosNombre(bool valor){
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg[x].setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg[x].setIdJugador(ID);
         fread(&team,sizeof(char),50,punteroFile);
         reg[x].setEquipo(team);
         fread(&edad,sizeof(int),1,punteroFile);
@@ -762,6 +869,8 @@ bool archivoJugador::ordenadosNombre(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -788,6 +897,131 @@ bool archivoJugador::ordenadosNombre(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
+            strncpy(team, reg[i].getEquipo().c_str(),49);
+            fwrite(&team,sizeof(char),50,punteroTemp);
+            edad = reg[i].getEdad();
+            fwrite(&edad,sizeof(int),1,punteroTemp);
+            strncpy(posicion, reg[i].getPosicion().c_str(),49);;
+            fwrite(&posicion,sizeof(char),50,punteroTemp);
+            numero = reg[i].getNumero();
+            fwrite(&numero,sizeof(int),1,punteroTemp);
+            goles = reg[i].getGoles();
+            fwrite(&goles,sizeof(int),1,punteroTemp);
+            asistencias = reg[i].getAsistencias();
+            fwrite(&asistencias,sizeof(int),1,punteroTemp);
+        }
+    }
+
+
+    fclose(punteroFile);
+    fclose(punteroTemp);
+
+    remove("Jugadores.dat");
+    rename("temp.dat","Jugadores.dat");
+
+    delete[] reg;
+
+    return 1;
+}
+
+bool archivoJugador::ordenadosID(bool valor){
+    FILE *punteroFile,*punteroTemp;
+    Jugador *reg;
+    Jugador temp;
+    int iteraciones=0;
+    int x=0;
+    char name[50] = {0};
+    int ID;
+    char posicion[50] = {0};
+    char team[50] = {0};
+    int edad, numero, goles, asistencias;
+
+    punteroFile = fopen("Jugadores.dat", "rb");
+    if(punteroFile==nullptr){return 0;}
+
+    punteroTemp=fopen("temp.dat", "wb");
+    if(punteroTemp==nullptr){return 0;}
+
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&ID,sizeof(int),1,punteroFile);
+        fread(&team,sizeof(char),50,punteroFile);
+        fread(&edad,sizeof(int),1,punteroFile);
+        fread(&posicion,sizeof(char),50,punteroFile);
+        fread(&numero,sizeof(int),1,punteroFile);
+        fread(&goles,sizeof(int),1,punteroFile);
+        fread(&asistencias,sizeof(int),1,punteroFile);
+        iteraciones++;
+    }
+
+    fseek(punteroFile,0,0);
+
+    reg = new Jugador[iteraciones];
+
+    while(fread(&name,sizeof(char),50,punteroFile)==50){
+        reg[x].setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg[x].setIdJugador(ID);
+        fread(&team,sizeof(char),50,punteroFile);
+        reg[x].setEquipo(team);
+        fread(&edad,sizeof(int),1,punteroFile);
+        reg[x].setEdad(edad);
+        fread(&posicion,sizeof(char),50,punteroFile);
+        reg[x].setPosicion(posicion);
+        fread(&numero,sizeof(int),1,punteroFile);
+        reg[x].setNumero(numero);
+        fread(&goles,sizeof(int),1,punteroFile);
+        reg[x].setGoles(goles);
+        fread(&asistencias,sizeof(int),1,punteroFile);
+        reg[x].setAsistencias(asistencias);
+        x++;
+    }
+
+    if(valor==0){
+
+        for(int i=0; i<iteraciones-1; i++){
+            for(int y=i+1; y<iteraciones; y++){
+                if(reg[i].getIdJugador()>reg[y].getIdJugador()){
+                    temp = reg[i];
+                    reg[i] = reg[y];
+                    reg[y] = temp;
+                }
+            }
+        }
+        for(int i=0; i<iteraciones; i++){
+            strncpy(name, reg[i].getNombre().c_str(),49);
+            fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
+            strncpy(team, reg[i].getEquipo().c_str(),49);
+            fwrite(&team,sizeof(char),50,punteroTemp);
+            edad = reg[i].getEdad();
+            fwrite(&edad,sizeof(int),1,punteroTemp);
+            strncpy(posicion, reg[i].getPosicion().c_str(),49);;
+            fwrite(&posicion,sizeof(char),50,punteroTemp);
+            numero = reg[i].getNumero();
+            fwrite(&numero,sizeof(int),1,punteroTemp);
+            goles = reg[i].getGoles();
+            fwrite(&goles,sizeof(int),1,punteroTemp);
+            asistencias = reg[i].getAsistencias();
+            fwrite(&asistencias,sizeof(int),1,punteroTemp);
+        }
+    } else if (valor==1){
+        for(int i=0; i<iteraciones-1; i++){
+            for(int y=i+1; y<iteraciones; y++){
+                if(reg[i].getIdJugador()<reg[y].getIdJugador()){
+                    temp = reg[i];
+                    reg[i] = reg[y];
+                    reg[y] = temp;
+                }
+            }
+        }
+        for(int i=0; i<iteraciones; i++){
+            strncpy(name, reg[i].getNombre().c_str(),49);
+            fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -822,6 +1056,7 @@ bool archivoJugador::ordenadosEquipo(bool valor){
     int iteraciones=0;
     int x=0;
     char name[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -833,6 +1068,7 @@ bool archivoJugador::ordenadosEquipo(bool valor){
     if(punteroTemp==nullptr){return 0;}
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&ID,sizeof(int),1,punteroFile);
         fread(&team,sizeof(char),50,punteroFile);
         fread(&edad,sizeof(int),1,punteroFile);
         fread(&posicion,sizeof(char),50,punteroFile);
@@ -848,6 +1084,8 @@ bool archivoJugador::ordenadosEquipo(bool valor){
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg[x].setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg[x].setIdJugador(ID);
         fread(&team,sizeof(char),50,punteroFile);
         reg[x].setEquipo(team);
         fread(&edad,sizeof(int),1,punteroFile);
@@ -877,6 +1115,8 @@ bool archivoJugador::ordenadosEquipo(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -903,6 +1143,8 @@ bool archivoJugador::ordenadosEquipo(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -936,6 +1178,7 @@ bool archivoJugador::ordenadosEdad(bool valor){
     int iteraciones=0;
     int x=0;
     char name[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -947,6 +1190,7 @@ bool archivoJugador::ordenadosEdad(bool valor){
     if(punteroTemp==nullptr){return 0;}
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&ID,sizeof(int),1,punteroFile);
         fread(&team,sizeof(char),50,punteroFile);
         fread(&edad,sizeof(int),1,punteroFile);
         fread(&posicion,sizeof(char),50,punteroFile);
@@ -962,6 +1206,8 @@ bool archivoJugador::ordenadosEdad(bool valor){
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg[x].setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg[x].setIdJugador(ID);
         fread(&team,sizeof(char),50,punteroFile);
         reg[x].setEquipo(team);
         fread(&edad,sizeof(int),1,punteroFile);
@@ -991,6 +1237,8 @@ bool archivoJugador::ordenadosEdad(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -1017,6 +1265,8 @@ bool archivoJugador::ordenadosEdad(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -1050,6 +1300,7 @@ bool archivoJugador::ordenadosDorsal(bool valor){
     int iteraciones=0;
     int x=0;
     char name[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -1061,6 +1312,7 @@ bool archivoJugador::ordenadosDorsal(bool valor){
     if(punteroTemp==nullptr){return 0;}
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&ID,sizeof(int),1,punteroFile);
         fread(&team,sizeof(char),50,punteroFile);
         fread(&edad,sizeof(int),1,punteroFile);
         fread(&posicion,sizeof(char),50,punteroFile);
@@ -1076,6 +1328,8 @@ bool archivoJugador::ordenadosDorsal(bool valor){
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg[x].setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg[x].setIdJugador(ID);
         fread(&team,sizeof(char),50,punteroFile);
         reg[x].setEquipo(team);
         fread(&edad,sizeof(int),1,punteroFile);
@@ -1105,6 +1359,8 @@ bool archivoJugador::ordenadosDorsal(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -1131,6 +1387,8 @@ bool archivoJugador::ordenadosDorsal(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -1164,6 +1422,7 @@ bool archivoJugador::ordenadosGoles(bool valor){
     int iteraciones=0;
     int x=0;
     char name[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -1175,6 +1434,7 @@ bool archivoJugador::ordenadosGoles(bool valor){
     if(punteroTemp==nullptr){return 0;}
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&ID,sizeof(int),1,punteroFile);
         fread(&team,sizeof(char),50,punteroFile);
         fread(&edad,sizeof(int),1,punteroFile);
         fread(&posicion,sizeof(char),50,punteroFile);
@@ -1190,6 +1450,8 @@ bool archivoJugador::ordenadosGoles(bool valor){
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg[x].setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg[x].setIdJugador(ID);
         fread(&team,sizeof(char),50,punteroFile);
         reg[x].setEquipo(team);
         fread(&edad,sizeof(int),1,punteroFile);
@@ -1219,6 +1481,8 @@ bool archivoJugador::ordenadosGoles(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fread(&ID,sizeof(int),1,punteroFile);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -1245,6 +1509,8 @@ bool archivoJugador::ordenadosGoles(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -1278,6 +1544,7 @@ bool archivoJugador::ordenadosAsistencias(bool valor){
     int iteraciones=0;
     int x=0;
     char name[50] = {0};
+    int ID;
     char posicion[50] = {0};
     char team[50] = {0};
     int edad, numero, goles, asistencias;
@@ -1289,6 +1556,7 @@ bool archivoJugador::ordenadosAsistencias(bool valor){
     if(punteroTemp==nullptr){return 0;}
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
+        fread(&ID,sizeof(int),1,punteroFile);
         fread(&team,sizeof(char),50,punteroFile);
         fread(&edad,sizeof(int),1,punteroFile);
         fread(&posicion,sizeof(char),50,punteroFile);
@@ -1304,6 +1572,8 @@ bool archivoJugador::ordenadosAsistencias(bool valor){
 
     while(fread(&name,sizeof(char),50,punteroFile)==50){
         reg[x].setNombre(name);
+        fread(&ID,sizeof(int),1,punteroFile);
+        reg[x].setIdJugador(ID);
         fread(&team,sizeof(char),50,punteroFile);
         reg[x].setEquipo(team);
         fread(&edad,sizeof(int),1,punteroFile);
@@ -1333,6 +1603,8 @@ bool archivoJugador::ordenadosAsistencias(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();
@@ -1349,7 +1621,7 @@ bool archivoJugador::ordenadosAsistencias(bool valor){
     } else if (valor==1){
         for(int i=0; i<iteraciones-1; i++){
             for(int y=i+1; y<iteraciones; y++){
-                if(reg[i].getAsistencias()<reg[y].getAsistencias()){
+                if(reg[i].getAsistencias()<reg[y].getAsistencias()){ ////LOGICA MAL HECHA!!!!!
                     temp = reg[i];
                     reg[i] = reg[y];
                     reg[y] = temp;
@@ -1359,6 +1631,8 @@ bool archivoJugador::ordenadosAsistencias(bool valor){
         for(int i=0; i<iteraciones; i++){
             strncpy(name, reg[i].getNombre().c_str(),49);
             fwrite(&name,sizeof(char),50,punteroTemp);
+            ID = reg[i].getIdJugador();
+            fwrite(&ID,sizeof(int),1,punteroTemp);
             strncpy(team, reg[i].getEquipo().c_str(),49);
             fwrite(&team,sizeof(char),50,punteroTemp);
             edad = reg[i].getEdad();

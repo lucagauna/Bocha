@@ -248,12 +248,13 @@ void Menu::subMenuJugadores(){
         cout << "       BUSCAR   "  << endl;
         cout << "======================" << endl;
         cout << "1. POR JUGADOR" << endl;
-        cout << "2. POR EQUIPO" <<endl;
-        cout << "3. POR EDAD" <<endl;
-        cout << "4. POR POSICION" << endl;
-        cout << "5. POR DORSAL" <<endl;
-        cout << "6. POR GOLES" <<endl;
-        cout << "7. POR ASISTENCIAS" <<endl;
+        cout << "2. POR ID" << endl;
+        cout << "3. POR EQUIPO" <<endl;
+        cout << "4. POR EDAD" <<endl;
+        cout << "5. POR POSICION" << endl;
+        cout << "6. POR DORSAL" <<endl;
+        cout << "7. POR GOLES" <<endl;
+        cout << "8. POR ASISTENCIAS" <<endl;
         cout << "0. Volver" << endl;
         cout << "======================" << endl;
         cout << "OPCION: ";
@@ -270,40 +271,48 @@ void Menu::subMenuJugadores(){
             break;
         case 2:
             system("cls");
+            cout << "Ingrese el ID a buscar: ";
+            cin >> numero;
+            reg = listado.buscarID(numero);
+            reg.mostrarJugador();
+            system("pause");
+            break;
+        case 3:
+            system("cls");
             cout << "Ingrese el equipo a buscar: ";
             cin.getline(nombre,50);
             listado.buscarEquipo(nombre);
             system("pause");
             break;
-        case 3:
+        case 4:
             system("cls");
             cout << "Ingrese la edad a buscar: ";
             cin >> numero;
             listado.buscarEdad(numero);
             system("pause");
             break;
-        case 4:
+        case 5:
             system("cls");
             cout << "Ingrese la posicion a buscar: ";
             cin.getline(nombre,50);
             listado.buscarPosicion(nombre);
             system("pause");
             break;
-        case 5:
+        case 6:
             system("cls");
             cout << "Ingrese la dorsal a buscar: ";
             cin >> numero;
             listado.buscarDorsal(numero);
             system("pause");
             break;
-        case 6:
+        case 7:
             system("cls");
             cout << "Ingrese los goles a buscar: ";
             cin >> numero;
             listado.buscarGoles(numero);
             system("pause");
             break;
-        case 7:
+        case 8:
             system("cls");
             cout << "Ingrese las asistencias a buscar: ";
             cin >> numero;
@@ -325,16 +334,18 @@ void Menu::subMenuOrdenarJugadores(){
         cout << "======================" << endl;
         cout << "1. POR NOMBRE (A,Z)" << endl;
         cout << "2. POR NOMBRE (Z,A)" << endl;
-        cout << "3. POR EQUIPO (A,Z)" <<endl;
-        cout << "4. POR EQUIPO (Z,A)" <<endl;
-        cout << "5. POR EDAD (Menor a Mayor)" << endl;
-        cout << "6. POR EDAD (Mayor a Menor)" << endl;
-        cout << "7. POR DORSAL (Menor a Mayor)" <<endl;
-        cout << "8. POR DORSAL (Mayor a menor)" <<endl;
-        cout << "9. POR GOLES (Menor a Mayor)" << endl;
-        cout << "10. POR GOLES (Mayor a menor)" << endl;
-        cout << "11. POR ASISTENCIAS (Menor a Mayor)" <<endl;
-        cout << "12. POR ASISTENCIAS (Mayor a menor)" <<endl;
+        cout << "3. POR ID (Menor a Mayor)" << endl;
+        cout << "4. POR ID (Mayor a Menor)" << endl;
+        cout << "5. POR EQUIPO (A,Z)" <<endl;
+        cout << "6. POR EQUIPO (Z,A)" <<endl;
+        cout << "7. POR EDAD (Menor a Mayor)" << endl;
+        cout << "8. POR EDAD (Mayor a Menor)" << endl;
+        cout << "9. POR DORSAL (Menor a Mayor)" <<endl;
+        cout << "10. POR DORSAL (Mayor a menor)" <<endl;
+        cout << "11. POR GOLES (Menor a Mayor)" << endl;
+        cout << "12. POR GOLES (Mayor a menor)" << endl;
+        cout << "13. POR ASISTENCIAS (Menor a Mayor)" <<endl;
+        cout << "14. POR ASISTENCIAS (Mayor a menor)" <<endl;
         cout << "0. Volver" << endl;
         cout << "======================" << endl;
         cout << "OPCION: ";
@@ -353,50 +364,60 @@ void Menu::subMenuOrdenarJugadores(){
             break;
         case 3:
             system("cls");
-            listado.ordenadosEquipo(0);
+            listado.ordenadosID(0);
             system("pause");
             break;
         case 4:
             system("cls");
-            listado.ordenadosEquipo(1);
+            listado.ordenadosID(1);
             system("pause");
             break;
         case 5:
             system("cls");
-            listado.ordenadosEdad(0);
+            listado.ordenadosEquipo(0);
             system("pause");
             break;
         case 6:
             system("cls");
-            listado.ordenadosEdad(1);
+            listado.ordenadosEquipo(1);
             system("pause");
             break;
         case 7:
             system("cls");
-            listado.ordenadosDorsal(0);
+            listado.ordenadosEdad(0);
             system("pause");
             break;
         case 8:
             system("cls");
-            listado.ordenadosDorsal(1);
+            listado.ordenadosEdad(1);
             system("pause");
             break;
         case 9:
             system("cls");
-            listado.ordenadosGoles(0);
+            listado.ordenadosDorsal(0);
             system("pause");
             break;
         case 10:
             system("cls");
-            listado.ordenadosGoles(1);
+            listado.ordenadosDorsal(1);
             system("pause");
             break;
         case 11:
             system("cls");
-            listado.ordenadosAsistencias(0);
+            listado.ordenadosGoles(0);
             system("pause");
             break;
         case 12:
+            system("cls");
+            listado.ordenadosGoles(1);
+            system("pause");
+            break;
+        case 13:
+            system("cls");
+            listado.ordenadosAsistencias(0);
+            system("pause");
+            break;
+        case 14:
             system("cls");
             listado.ordenadosAsistencias(1);
             system("pause");

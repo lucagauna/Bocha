@@ -21,24 +21,5 @@ int main() {
     archivoJugador lol("Jugadores.dat");
 
     menu.mostrarMenu();
-
-    //jugador.cargar();
-    //lol.agregarJugador(jugador);
-    //jugador = lol.listarJugador("Alan Velasco");
-    //jugador.mostrarJugador();
-    //lol.mostrarJugadores();
-
-    //club = reg.listarRegistro(" ");
-    //club.mostrarEquipo();
-    //club.cargar();
-    //reg.agregarRegistro(club);
-    //reg.eliminarRegistro("River Plate");
-    //reg.modificarRegistro(club); ///ARREGLAR!!!!!!!
-    //reg.buscarRegistro();
-    //reg.mostrarRegistro();
-
-
-    //Revisar Vector Dinamico...
-    //Revisar si se puede simplificar declarando chars...
     return 0;
 }

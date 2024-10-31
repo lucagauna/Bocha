@@ -6,12 +6,15 @@ using namespace std;
 // Constructor
 Equipo::Equipo(){
     nombre="Undefined";
+    ///directorTecnico = "Undefinded"
     plantel=-1;
 }
 
 void Equipo::cargar(){
     cout << "Ingrese nombre del Equipo: ";
     getline(cin,nombre);
+   /* cout << "Ingrese el director tecnico: ";
+    cin >> directorTecnico; */
     cout << "Ingrese cantidad de jugadores: ";
     cin >> plantel;
     while(plantel<=0){
@@ -29,8 +32,10 @@ void Equipo::cargar(){
 
 string Equipo::getNombre(){return nombre;}
 string  Equipo::getJugador(int i){return jugadores[i];}
+///string Equipo::getDirectorTecnico(){return directorTecnico;}
 int  Equipo::getPlantel(){return plantel;}
 void  Equipo::setNombre(string nombre){this->nombre=nombre;}
+///void Equipo::setDirectorTecnico(string directorTecnico){this->directorTecnico=directorTecnico;}
 void  Equipo::setJugador(int pos, string jugador){
     jugadores[pos]=jugador;
     }
@@ -42,15 +47,12 @@ void  Equipo::setPlantel(int plantel){
 
 void Equipo::mostrarEquipo() const {
     cout << "Equipo: " << nombre << endl;
+///    cout << "Director Tecnico: " <<directorTecnico <<endl;
     cout << "Plantel: " << plantel <<endl;
     for(int i=0; i<plantel; i++){
         cout << "Jugador numero #" << i+1 << ": " << jugadores[i] <<endl;
     }
 }
-
-/*Equipo::~Equipo(){
-    delete[] jugadores;
-}*/
 
 archivoEquipo::archivoEquipo(const char* nombre="Equipos.dat"){
     strcpy(this->nombre, nombre);

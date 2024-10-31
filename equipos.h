@@ -10,6 +10,7 @@ class Equipo {
 
 private:
     string nombre;
+    ///string directorTecnico;
     string* jugadores;
     int plantel=0;
 public:
@@ -23,14 +24,14 @@ public:
     // Metodos
 
     string getNombre();
+    ///string getDirectorTecnico();
     string getJugador(int i);
     int getPlantel();
     void setNombre(string nombre);
+    ///void setDirectorTecnico(string directorTecnico);
     void setJugador(int pos, string jugador);
     void setPlantel(int plantel);
     void mostrarEquipo() const;
-
-    //~Equipo();
 };
 
 
