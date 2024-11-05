@@ -279,7 +279,7 @@
 1730552787 c:\users\luka\desktop\proyecto\bocha\menu.h
 	<iostream>
 
-1730768148 source:c:\users\luka\desktop\proyecto\bocha\menu.cpp
+1730817081 source:c:\users\luka\desktop\proyecto\bocha\menu.cpp
 	"menu.h"
 	"equipos.h"
 	"jugador.h"
@@ -311,7 +311,7 @@
 	<iostream>
 	<string>
 
-1730766338 source:c:\users\luka\desktop\proyecto\bocha\partido.cpp
+1730817027 source:c:\users\luka\desktop\proyecto\bocha\partido.cpp
 	"partido.h"
 	<iostream>
 	<cstdlib>

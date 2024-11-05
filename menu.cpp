@@ -483,7 +483,7 @@ void Menu::menuCompetencias(){
         if (reg.getCompetencia() != "") {
             Partido partido;
             partido.asignarCompetencia(reg);
-            partido.mostrarPartido();
+            //partido.mostrarPartido();
             }
             system("pause");
             break;

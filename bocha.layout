@@ -2,9 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Release" />
-	<File name="menu.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="competencia.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="13872" topLine="390" />
+			<Cursor1 position="7243" topLine="232" />
+		</Cursor>
+	</File>
+	<File name="partido.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="458" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="jugador.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -12,19 +17,9 @@
 			<Cursor1 position="1271" topLine="36" />
 		</Cursor>
 	</File>
-	<File name="competencia.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="competencia.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="partido.cpp" open="1" top="1" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="equipos.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5862" topLine="162" />
+			<Cursor1 position="915" topLine="14" />
 		</Cursor>
 	</File>
 	<File name="jugador.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
@@ -32,24 +27,34 @@
 			<Cursor1 position="38894" topLine="366" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="menu.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="774" topLine="4" />
-		</Cursor>
-	</File>
-	<File name="competencia.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="831" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="equipos.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="58" topLine="6" />
+			<Cursor1 position="14349" topLine="454" />
 		</Cursor>
 	</File>
 	<File name="menu.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="332" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="equipos.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="58" topLine="2" />
+		</Cursor>
+	</File>
+	<File name="partido.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="576" topLine="86" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="356" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="equipos.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14800" topLine="469" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
