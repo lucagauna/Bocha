@@ -2,6 +2,7 @@
 #include "equipos.h"
 #include "jugador.h"
 #include "competencia.h"
+#include "partido.h"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -445,6 +446,7 @@ void Menu::menuCompetencias(){
         cout << "2. ELIMINAR" <<endl;
         cout << "3. MODIFCAR" <<endl;
         cout << "4. LISTAR" <<endl;
+        cout << "5. JUGAR PARTIDO" <<endl;
         cout << "0. Volver" << endl;
         cout << "======================" << endl;
         cout << "OPCION: ";
@@ -473,6 +475,16 @@ void Menu::menuCompetencias(){
         case 4:
             system ("cls");
             listado.listarCompetencia();
+            system("pause");
+            break;
+        case 5:
+            system ("cls");
+            reg = listado.buscarCompetencia(nombre);
+        if (reg.getCompetencia() != "") {
+            Partido partido;
+            partido.asignarCompetencia(reg);
+            partido.mostrarPartido();
+            }
             system("pause");
             break;
         }

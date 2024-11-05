@@ -17,25 +17,14 @@
 using namespace std;
 
 int main() {
-   // Menu menu;
+   Menu menu;
     //Equipo club;
     //Jugador jugador;
     //archivoEquipo reg("Equipos.dat");
     //archivoJugador lol("Jugadores.dat");
 
-    //menu.mostrarMenu();
+    menu.mostrarMenu();
 
-    /*archivoCompetencia archivo("Competencias.dat");
-    Competencia nuevaCompetencia;
-    archivo.agregarCompetencia(nuevaCompetencia);
-
-
-*/
-
-  Partido partido;
-
-    // Mostrar los detalles del partido
-    partido.mostrarPartido();
 
 
 

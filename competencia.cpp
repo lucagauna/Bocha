@@ -232,3 +232,40 @@ bool archivoCompetencia::listarCompetencia(){
     fclose(punteroFile);
     return true;
 }
+
+Competencia archivoCompetencia::buscarCompetencia(char* nombreCompetencia) {
+    cout << "Ingrese el nombre de la competencia a buscar: ";
+    cin.getline(nombreCompetencia, sizeof(nombreCompetencia));
+
+    char nombre[50] = {0};
+    char equipos[50] = {0};
+    int cantidad;
+    Competencia reg;
+
+    FILE *punteroFile = fopen(this->nombre, "rb");
+    if (punteroFile == nullptr) {
+        cerr << "Error al abrir el archivo." << endl;
+        return reg;
+    }
+
+    while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+        if (strcmp(nombre, nombreCompetencia) == 0) {
+            reg.setCompetencia(nombre);
+            fread(&cantidad, sizeof(int), 1, punteroFile);
+            reg.setNumEquipo(cantidad);
+            for (int i = 0; i < cantidad; i++) {
+                fread(&equipos, sizeof(char), 50, punteroFile);
+                reg.setEquipo(i, equipos);
+            }
+            fclose(punteroFile);
+            return reg;
+        } else {
+            fread(&cantidad, sizeof(int), 1, punteroFile);
+            fseek(punteroFile, cantidad * sizeof(char) * 50, SEEK_CUR);
+        }
+    }
+
+    fclose(punteroFile);
+    cerr << "Competencia no encontrada." << endl;
+    return reg;
+}

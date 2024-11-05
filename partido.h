@@ -17,6 +17,8 @@ private:
 public:
     Partido();
 
+    void asignarCompetencia(Competencia& comp);
+
     string getEquipo1();
     string getEquipo2();
     int getGoles(int i);

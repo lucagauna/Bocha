@@ -48,4 +48,6 @@ public:
 
 
 
+
+
 #endif // COMPETENCIA_H_INCLUDED
