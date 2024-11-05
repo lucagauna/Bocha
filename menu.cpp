@@ -3,6 +3,7 @@
 #include "jugador.h"
 #include "competencia.h"
 #include "partido.h"
+#include "rlutil.h"
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -10,17 +11,43 @@ using namespace std;
 void Menu::mostrarMenu() {
     int opcion = -1;
     while(opcion!=0){
-    system("cls");
-        cout << "======================" << endl;
-        cout << "       BOCHA1.1V   "  << endl;
-        cout << "======================" << endl;
-        cout << "1. EQUIPOS" << endl;
-        cout << "2. JUGADORES" <<endl;
-        cout << "3. COMPETENCIAS" << endl;
-        cout << "0. Salir" << endl;
-        cout << "======================" << endl;
-        cout << "OPCION: ";
+
+
+    rlutil::cls();
+    rlutil::setColor(rlutil::GREEN);
+
+
+    rlutil::locate(10, 2);
+    std::cout << "=========================" << std::endl;
+    rlutil::locate(10, 3);
+    std::cout << "       BOCHA 1.2V        " << std::endl;
+    rlutil::locate(10, 4);
+    std::cout << "=========================" << std::endl;
+
+
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(10, 6);
+    std::cout << "1. EQUIPOS";
+    rlutil::locate(10, 7);
+    std::cout << "2. JUGADORES";
+    rlutil::locate(10, 8);
+    std::cout << "3. COMPETENCIAS";
+    rlutil::locate(10, 9);
+    std::cout << "0. Salir";
+
+
+    rlutil::setColor(rlutil::GREEN);
+    rlutil::locate(10, 11);
+    std::cout << "=========================" << std::endl;
+
+
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(10, 12);
+    std::cout << "OPCION: ";
+    rlutil::setColor(rlutil::GREEN);
         cin >> opcion;
+
+
         switch(opcion){
         case 1:
             menuEquipos();
