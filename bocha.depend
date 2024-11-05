@@ -279,12 +279,13 @@
 1730552787 c:\users\luka\desktop\proyecto\bocha\menu.h
 	<iostream>
 
-1730817081 source:c:\users\luka\desktop\proyecto\bocha\menu.cpp
+1730821131 source:c:\users\luka\desktop\proyecto\bocha\menu.cpp
 	"menu.h"
 	"equipos.h"
 	"jugador.h"
 	"competencia.h"
 	"partido.h"
+	"rlutil.h"
 	<iostream>
 	<cstring>
 
@@ -311,7 +312,7 @@
 	<iostream>
 	<string>
 
-1730817027 source:c:\users\luka\desktop\proyecto\bocha\partido.cpp
+1730817539 source:c:\users\luka\desktop\proyecto\bocha\partido.cpp
 	"partido.h"
 	<iostream>
 	<cstdlib>
@@ -320,4 +321,18 @@
 	<iostream>
 	<cstdlib>
 	<ctime>
+
+1571584339 c:\users\luka\desktop\proyecto\bocha\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
 
