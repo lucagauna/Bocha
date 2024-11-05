@@ -18,11 +18,11 @@ void Menu::mostrarMenu() {
 
 
     rlutil::locate(10, 2);
-    cout << "=========================" << :endl;
+    cout << "=========================" << endl;
     rlutil::locate(10, 3);
-    cout << "       BOCHA 1.2V        " << :endl;
+    cout << "       BOCHA 1.2V        " << endl;
     rlutil::locate(10, 4);
-    cout << "=========================" << :endl;
+    cout << "=========================" << endl;
 
 
     rlutil::setColor(rlutil::WHITE);
@@ -38,7 +38,7 @@ void Menu::mostrarMenu() {
 
     rlutil::setColor(rlutil::GREEN);
     rlutil::locate(10, 11);
-    cout << "=========================" << std::endl;
+    cout << "=========================" << endl;
 
 
     rlutil::setColor(rlutil::WHITE);
