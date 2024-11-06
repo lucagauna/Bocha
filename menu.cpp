@@ -461,6 +461,7 @@ void Menu::subMenuOrdenarJugadores(){
 
 void Menu::menuCompetencias(){
     Competencia reg;
+    Partido partido;
     archivoCompetencia listado("Competencias.dat");
     char nombre[50]={0};
     int opcion = -1;
@@ -507,10 +508,9 @@ void Menu::menuCompetencias(){
         case 5:
             system ("cls");
             reg = listado.buscarCompetencia(nombre);
-        if (reg.getCompetencia() != "") {
-            Partido partido;
-            partido.asignarCompetencia(reg);
-            //partido.mostrarPartido();
+            if (reg.getCompetencia() != "") {
+                partido.asignarCompetencia(reg);
+                //partido.mostrarPartido();
             }
             system("pause");
             break;

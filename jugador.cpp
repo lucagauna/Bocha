@@ -250,17 +250,18 @@ bool archivoJugador::agregarJugador(Jugador jugador){
             return 0;
         }
         fread(&ID,sizeof(int),1,punteroFile);
-        while(ID == jugador.getIdJugador() ||  jugador.getIdJugador()<=0){
-            cout << "Reingresar el ID del jugador: ";
-            cin >> n;
-            jugador.setIdJugador(n);
-        }
         fread(&team,sizeof(char),50,punteroFile);
         fread(&age,sizeof(int),1,punteroFile);
         fread(&position,sizeof(char),50,punteroFile);
         fread(&number,sizeof(int),1,punteroFile);
         fread(&goals,sizeof(int),1,punteroFile);
         fread(&assists,sizeof(int),1,punteroFile);
+        while(ID == jugador.getIdJugador() ||  jugador.getIdJugador()<=0){
+            cout << "Reingresar el ID del jugador: ";
+            cin >> n;
+            jugador.setIdJugador(n);
+            fseek(punteroFile,0,0);
+        }
     }
     fclose(punteroFile);
 

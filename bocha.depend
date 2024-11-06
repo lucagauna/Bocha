@@ -215,15 +215,15 @@
 	<iostream>
 	<vector>
 
-1730390369 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
+1730908959 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
 	<iostream>
 
-1730392529 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
+1730909248 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
 	<cstring>
 
-1730410832 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
+1730909248 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
 	<iostream>
 	<cstring>
 	"competencia.h"
@@ -231,6 +231,7 @@
 	"jugador.h"
 	"equipos.h"
 	"competencia.h"
+	"partido.h"
 
 1730126783 c:\users\facuc\desktop\proyecto_github\bocha\funciones.h
 	<iostream>
@@ -268,11 +269,13 @@
 1730408788 c:\users\facuc\desktop\proyecto_github\bocha\menu.h
 	<iostream>
 
-1730415456 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
+1730859150 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
 	"menu.h"
 	"equipos.h"
 	"jugador.h"
 	"competencia.h"
+	"partido.h"
+	"rlutil.h"
 	<iostream>
 	<cstring>
 
@@ -298,12 +301,12 @@
 	<iostream>
 	<cstring>
 
-1730416138 source:c:\users\facuc\desktop\proyecto_github\bocha\competencia.cpp
+1730859150 source:c:\users\facuc\desktop\proyecto_github\bocha\competencia.cpp
 	"competencia.h"
 	<iostream>
 	<cstring>
 
-1730412364 c:\users\facuc\desktop\proyecto_github\bocha\competencia.h
+1730859150 c:\users\facuc\desktop\proyecto_github\bocha\competencia.h
 	<iostream>
 	<string>
 
@@ -335,4 +338,33 @@
 	<sys/ioctl.h>
 	<sys/types.h>
 	<sys/time.h>
+
+1730859150 c:\users\facuc\desktop\proyecto_github\bocha\partido.h
+	"competencia.h"
+	<iostream>
+	<string>
+
+1730859150 c:\users\facuc\desktop\proyecto_github\bocha\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1730859150 source:c:\users\facuc\desktop\proyecto_github\bocha\partido.cpp
+	"partido.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"partido.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
 
