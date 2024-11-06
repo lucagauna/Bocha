@@ -32,11 +32,9 @@ void Partido::asignarCompetencia(Competencia comp) {
     for (int i = 0; i < comp.getNumEquipo(); ++i) {
         if (comp.getEquipo(i) == equipo1) {
             equipo1Valido = true;
-
         }
         if (comp.getEquipo(i) == equipo2) {
             equipo2Valido = true;
-
         }
     }
 
@@ -60,82 +58,51 @@ void Partido::asignarCompetencia(Competencia comp) {
     cout << "Fecha: " << fecha << endl;
     cout << "Equipo 1: " << equipo1 << " | Goles: " << goles[0] << endl;
     cout << "Equipo 2: " << equipo2 << " | Goles: " << goles[1] << endl;
-
-
-    if (goles[0] > goles[1])
-    {
-        cout << "Ganador: " << equipo1 << endl;
-    }
-    else if (goles[0] < goles[1])
-    {
-        cout << "Ganador: " << equipo2 << endl;
-    }
-    else
-    {
-        cout << "Resultado: Empate" << endl;
-    }
-
-
 }
 
-string Partido::getEquipo1()
-{
+string Partido::getEquipo1(){
     return equipo1;
 }
-string Partido::getEquipo2()
-{
+string Partido::getEquipo2(){
     return equipo2;
 }
-int Partido::getGoles(int i)
-{
-    if (i >= 0 && i < 2)
-    {
+int Partido::getGoles(int i){
+    if (i >= 0 && i < 2){
         return goles[i];
     }
     return -1;
 }
-int Partido::getFecha() const
-{
+int Partido::getFecha() {
     return fecha;
 }
 
-void Partido::setEquipo1(string& valor)
-{
+void Partido::setEquipo1(string& valor){
     equipo1 = valor;
 }
-void Partido::setEquipo2(string& valor)
-{
+void Partido::setEquipo2(string& valor){
     equipo2 = valor;
 }
-void Partido::setGoles(int valor, int i)
-{
-    if (i >= 0 && i < 2)
-    {
+void Partido::setGoles(int valor, int i){
+    if (i >= 0 && i < 2){
         goles[i] = valor;
     }
 }
-void Partido::setFecha(int valor)
-{
+void Partido::setFecha(int valor){
     fecha = valor;
 }
 
-void Partido::mostrarPartido() const
-{
-    system("cls");
+void Partido::mostrarPartido(){
     cout << "Fecha: " << fecha << endl;
     cout << "Equipo 1: " << equipo1 << " | Goles: " << goles[0] << endl;
     cout << "Equipo 2: " << equipo2 << " | Goles: " << goles[1] << endl;
 
-    if (goles[0] > goles[1])
-    {
+    if (goles[0] > goles[1]){
         cout << "Ganador: " << equipo1 << endl;
     }
-    else if (goles[0] < goles[1])
-    {
+    else if (goles[0] < goles[1]){
         cout << "Ganador: " << equipo2 << endl;
     }
-    else
-    {
+    else{
         cout << "Resultado: Empate" << endl;
     }
 }

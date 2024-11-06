@@ -21,14 +21,14 @@ public:
     string getEquipo1();
     string getEquipo2();
     int getGoles(int i);
-    int getFecha() const;
+    int getFecha();
 
     void setEquipo1(string& valor);
     void setEquipo2(string& valor);
     void setGoles(int valor, int i);
     void setFecha(int valor);
 
-    void mostrarPartido() const;
+    void mostrarPartido();
 };
 
 #endif

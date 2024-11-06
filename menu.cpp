@@ -521,7 +521,7 @@ void Menu::menuCompetencias(){
             reg = listado.buscarCompetencia(nombre);
             if (reg.getCompetencia() != "") {
                 partido.asignarCompetencia(reg);
-                //partido.mostrarPartido();
+                partido.mostrarPartido();
             }
             system("pause");
             break;

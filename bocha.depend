@@ -218,7 +218,7 @@
 1730925557 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
 	<iostream>
 
-1730925717 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
+1730928330 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
 	<cstring>
@@ -339,7 +339,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1730915773 c:\users\facuc\desktop\proyecto_github\bocha\partido.h
+1730935790 c:\users\facuc\desktop\proyecto_github\bocha\partido.h
 	"competencia.h"
 	<iostream>
 	<string>
