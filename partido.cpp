@@ -12,30 +12,24 @@ using namespace std;
 
 using namespace std;
 
-
-Partido::Partido() {
-    goles = new int[2]{0, 0};
-}
-
-
-void Partido::asignarCompetencia(Competencia& comp) {
-        cout << "Competencia seleccionada: " << comp.getCompetencia() << endl;
-        cout << "Equipos disponibles: " << endl;
-        for (int i = 0; i < comp.getNumEquipo(); ++i) {
-            cout << i + 1 << ". " << comp.getEquipo(i) << endl;
-        }
+void Partido::asignarCompetencia(Competencia comp) {
+    cout << "Competencia seleccionada: " << comp.getCompetencia() << endl;
+    cout << "Equipos disponibles: " << endl;
+    for (int i = 0; i < comp.getNumEquipo(); ++i) {
+        cout << i + 1 << ". " << comp.getEquipo(i) << endl;
+    }
 
 
-        cout<<"Seleccione el Primer Equipo: "<<endl;
-        getline(cin, equipo1);
-        cout<<"Seleccione el Segundo Equipo: "<<endl;
-        getline(cin, equipo2);
+    cout<<"Seleccione el Primer Equipo: "<<endl;
+    getline(cin, equipo1);
+    cout<<"Seleccione el Segundo Equipo: "<<endl;
+    getline(cin, equipo2);
 
-         bool equipo1Valido = false;
-        bool equipo2Valido = false;
+    bool equipo1Valido = false;
+    bool equipo2Valido = false;
 
 
- for (int i = 0; i < comp.getNumEquipo(); ++i) {
+    for (int i = 0; i < comp.getNumEquipo(); ++i) {
         if (comp.getEquipo(i) == equipo1) {
             equipo1Valido = true;
 

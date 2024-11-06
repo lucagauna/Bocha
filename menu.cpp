@@ -474,7 +474,8 @@ void Menu::menuCompetencias(){
         cout << "2. ELIMINAR" <<endl;
         cout << "3. MODIFCAR" <<endl;
         cout << "4. LISTAR" <<endl;
-        cout << "5. JUGAR PARTIDO" <<endl;
+        cout << "5. BUSCAR" <<endl;
+        cout << "6. JUGAR PARTIDO" <<endl;
         cout << "0. Volver" << endl;
         cout << "======================" << endl;
         cout << "OPCION: ";
@@ -507,6 +508,16 @@ void Menu::menuCompetencias(){
             break;
         case 5:
             system ("cls");
+            cout << "Ingrese la competencia buscada: ";
+            cin.getline(nombre, 49);
+            reg = listado.buscarCompetencia(nombre);
+            reg.mostrarCompetencia();
+            system("pause");
+            break;
+        case 6:
+            system ("cls");
+            cout << "Ingrese la competencia buscada: ";
+            cin.getline(nombre, 49);
             reg = listado.buscarCompetencia(nombre);
             if (reg.getCompetencia() != "") {
                 partido.asignarCompetencia(reg);

@@ -10,25 +10,16 @@ class Equipo {
 
 private:
     string nombre;
-    ///string directorTecnico;
     string* jugadores;
     int plantel=0;
 public:
-
-    // Constructor
     Equipo();
 
     void cargar();
-    // Destructor
-
-    // Metodos
-
     string getNombre();
-    ///string getDirectorTecnico();
     string getJugador(int i);
     int getPlantel();
     void setNombre(string nombre);
-    ///void setDirectorTecnico(string directorTecnico);
     void setJugador(int pos, string jugador);
     void setPlantel(int plantel);
     void mostrarEquipo() const;
@@ -44,7 +35,6 @@ public:
     bool agregarRegistro(Equipo reg);
     bool eliminarRegistro(char* club);
     bool modificarRegistro(Equipo club);
-    ///bool buscarRegistro();
     bool mostrarRegistro();
     bool ordenadosEquipo(bool valor);
     bool ordenadosPlantel(bool valor);

@@ -12,7 +12,7 @@ private:
     int numEquipo;
 public:
 
-
+    Competencia();
 
     void cargar();
 

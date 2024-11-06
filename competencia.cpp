@@ -3,7 +3,18 @@
 #include <cstring>
 using namespace std;
 
+Competencia::Competencia(){
+    nameCompetencia= "Undefined";
+    numEquipo=-1;
+}
+
 void Competencia::cargar(){
+    FILE* punteroFile = fopen("Equipos.dat", "rb");
+    if(punteroFile==nullptr){return;}
+    char name[50]={0};
+    char player[50]={0};
+    int quantity=0;
+    bool verificacion;
 
     cout<<"Ingrese el nombre de la competencia: ";
     getline(cin, nameCompetencia);
@@ -14,10 +25,27 @@ void Competencia::cargar(){
     cin.ignore();
 
 
-        equipo = new string[numEquipo];
+    equipo = new string[numEquipo];
     for (int i = 0;i < numEquipo ; i++ ){
+        verificacion = false;
         cout << "Ingrese el nombre de cada equipo " << (i+1) <<": ";
         getline(cin, equipo[i]);
+        while(!verificacion){
+            fseek(punteroFile,0,0);
+            while(fread(&name,sizeof(char),50,punteroFile)==50){
+                if(equipo[i]==name){
+                    verificacion=true;
+                }
+                fread(&quantity,sizeof(int),1,punteroFile);
+                for(int i=0; i<quantity; i++){
+                    fread(&player,sizeof(char),50,punteroFile);
+                }
+            }
+            if(!verificacion){
+                cout << "Reingrese el nombre de cada equipo " << (i+1) <<": ";
+                getline(cin, equipo[i]);
+            }
+        }
     }
 
 }
@@ -234,21 +262,19 @@ bool archivoCompetencia::listarCompetencia(){
 }
 
 Competencia archivoCompetencia::buscarCompetencia(char* nombreCompetencia) {
-    cout << "Ingrese el nombre de la competencia a buscar: ";
-    cin.getline(nombreCompetencia, sizeof(nombreCompetencia));
-
     char nombre[50] = {0};
     char equipos[50] = {0};
     int cantidad;
     Competencia reg;
+    Competencia fallo;
 
     FILE *punteroFile = fopen(this->nombre, "rb");
     if (punteroFile == nullptr) {
-        cerr << "Error al abrir el archivo." << endl;
+        cout << "Error al abrir el archivo." << endl;
         return reg;
     }
 
-    while (fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
+    while(fread(&nombre, sizeof(char), 50, punteroFile) == 50) {
         if (strcmp(nombre, nombreCompetencia) == 0) {
             reg.setCompetencia(nombre);
             fread(&cantidad, sizeof(int), 1, punteroFile);
@@ -261,11 +287,13 @@ Competencia archivoCompetencia::buscarCompetencia(char* nombreCompetencia) {
             return reg;
         } else {
             fread(&cantidad, sizeof(int), 1, punteroFile);
-            fseek(punteroFile, cantidad * sizeof(char) * 50, SEEK_CUR);
+            for (int i = 0; i < cantidad; i++) {
+                fread(&equipos, sizeof(char), 50, punteroFile);
+            }
         }
     }
 
     fclose(punteroFile);
-    cerr << "Competencia no encontrada." << endl;
-    return reg;
+    cout << "Competencia no encontrada." << endl;
+    return fallo;
 }

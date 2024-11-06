@@ -11,13 +11,12 @@ class Partido : public Competencia {
 private:
     string equipo1;
     string equipo2;
-    int* goles;
+    int goles[2];
     int fecha;
 
 public:
-    Partido();
 
-    void asignarCompetencia(Competencia& comp);
+    void asignarCompetencia(Competencia comp);
 
     string getEquipo1();
     string getEquipo2();
