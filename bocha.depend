@@ -196,7 +196,7 @@
 
 1728946122 ated upstream
 
-1730915067 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
+1730915773 source:c:\users\facuc\desktop\proyecto_github\bocha\equipos.cpp
 	"equipos.h"
 	<iostream>
 	<cstring>
@@ -211,19 +211,19 @@
 	"jugador.h"
 	"equipos.h"
 
-1730915067 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
+1730915773 c:\users\facuc\desktop\proyecto_github\bocha\equipos.h
 	<iostream>
 	<vector>
 
-1730912831 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
+1730925557 c:\users\facuc\desktop\proyecto_github\bocha\jugador.h
 	<iostream>
 
-1730912831 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
+1730925717 source:c:\users\facuc\desktop\proyecto_github\bocha\jugador.cpp
 	"jugador.h"
 	<iostream>
 	<cstring>
 
-1730909248 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
+1730915773 source:c:\users\facuc\desktop\proyecto_github\bocha\main.cpp
 	<iostream>
 	<cstring>
 	"competencia.h"
@@ -266,10 +266,10 @@
 1729567827 c:\users\luka\desktop\proyecto\bocha\funciones.h
 	<iostream>
 
-1730408788 c:\users\facuc\desktop\proyecto_github\bocha\menu.h
+1730915773 c:\users\facuc\desktop\proyecto_github\bocha\menu.h
 	<iostream>
 
-1730913840 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
+1730915773 source:c:\users\facuc\desktop\proyecto_github\bocha\menu.cpp
 	"menu.h"
 	"equipos.h"
 	"jugador.h"
@@ -301,12 +301,12 @@
 	<iostream>
 	<cstring>
 
-1730913925 source:c:\users\facuc\desktop\proyecto_github\bocha\competencia.cpp
+1730915773 source:c:\users\facuc\desktop\proyecto_github\bocha\competencia.cpp
 	"competencia.h"
 	<iostream>
 	<cstring>
 
-1730913925 c:\users\facuc\desktop\proyecto_github\bocha\competencia.h
+1730915773 c:\users\facuc\desktop\proyecto_github\bocha\competencia.h
 	<iostream>
 	<string>
 
@@ -339,12 +339,12 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1730914067 c:\users\facuc\desktop\proyecto_github\bocha\partido.h
+1730915773 c:\users\facuc\desktop\proyecto_github\bocha\partido.h
 	"competencia.h"
 	<iostream>
 	<string>
 
-1730859150 c:\users\facuc\desktop\proyecto_github\bocha\rlutil.h
+1730915773 c:\users\facuc\desktop\proyecto_github\bocha\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -358,7 +358,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1730915067 source:c:\users\facuc\desktop\proyecto_github\bocha\partido.cpp
+1730915773 source:c:\users\facuc\desktop\proyecto_github\bocha\partido.cpp
 	"partido.h"
 	<iostream>
 	<cstdlib>

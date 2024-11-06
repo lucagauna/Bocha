@@ -6,41 +6,37 @@ using namespace std;
 
 class Jugador {
 private:
-    string nombre;
+    char nombre[50];
     int idJugador;
-    string equipo;
+    char equipo[50];
     int edad;
-    string posicion;
+    char posicion[50];
     int numero;
     int goles;
     int asistencias;
 
 public:
-    // Constructor
     Jugador();
 
-    void cargar(); // Este settea los valores default
+    void cargar();
 
-
-    // Getters
-    string getNombre();
+    char* getNombre();
     int getIdJugador();
-    string getEquipo();
-    string getPosicion();
+    char* getEquipo();
+    char* getPosicion();
     int getEdad();
     int getNumero();
     int getGoles();
     int getAsistencias();
 
-    // Setters
-    void setNombre(string _nombre);
+    void setNombre(char* nombre);
     void setIdJugador(int ID);
-    void setEquipo(const string& _equipo);
-    void setEdad(int _edad);
-    void setPosicion(string _posicion);
-    void setGoles(int _goles);
-    void setAsistencias(int _asistencias);
-    void setNumero(int _numero);
+    void setEquipo(char* equipo);
+    void setEdad(int edad);
+    void setPosicion(char* posicion);
+    void setGoles(int goles);
+    void setAsistencias(int asistencias);
+    void setNumero(int numero);
 
 
     void mostrarJugador() const;
@@ -52,7 +48,7 @@ private:
 public:
     archivoJugador(const char* nombreArchivo);
     bool agregarJugador(Jugador jugador);
-    bool eliminarJugador(const char* nombreJugador);
+    bool eliminarJugador(char* nombreJugador);
     bool modificarJugador(Jugador jugador);
     bool mostrarJugadores();
     bool ordenadosNombre(bool valor);
@@ -62,11 +58,11 @@ public:
     bool ordenadosDorsal(bool valor);
     bool ordenadosGoles(bool valor);
     bool ordenadosAsistencias(bool valor);
-    Jugador buscarJugador(const char* nombreJugador);
+    Jugador buscarJugador(char* nombreJugador);
     Jugador buscarID(int num);
-    Jugador buscarEquipo(const char* equipo);
+    Jugador buscarEquipo(char* equipo);
     Jugador buscarEdad(int age);
-    Jugador buscarPosicion(const char* position);
+    Jugador buscarPosicion(char* position);
     Jugador buscarDorsal(int dorsal);
     Jugador buscarGoles(int goals);
     Jugador buscarAsistencias(int asissts);
