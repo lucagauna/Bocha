@@ -189,21 +189,25 @@ void Menu::subMenuOrdenarEquipos(){
         case 1:
             system("cls");
             listado.ordenadosEquipo(0);
+            listado.mostrarRegistro();
             system("pause");
             break;
         case 2:
             system("cls");
             listado.ordenadosEquipo(1);
+            listado.mostrarRegistro();
             system("pause");
             break;
         case 3:
             system("cls");
             listado.ordenadosPlantel(0);
+            listado.mostrarRegistro();
             system("pause");
             break;
         case 4:
             system("cls");
             listado.ordenadosPlantel(1);
+            listado.mostrarRegistro();
             system("pause");
             break;
         }
@@ -388,71 +392,85 @@ void Menu::subMenuOrdenarJugadores(){
         case 1:
             system("cls");
             listado.ordenadosNombre(0);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 2:
             system("cls");
             listado.ordenadosNombre(1);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 3:
             system("cls");
             listado.ordenadosID(0);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 4:
             system("cls");
             listado.ordenadosID(1);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 5:
             system("cls");
             listado.ordenadosEquipo(0);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 6:
             system("cls");
             listado.ordenadosEquipo(1);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 7:
             system("cls");
             listado.ordenadosEdad(0);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 8:
             system("cls");
             listado.ordenadosEdad(1);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 9:
             system("cls");
             listado.ordenadosDorsal(0);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 10:
             system("cls");
             listado.ordenadosDorsal(1);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 11:
             system("cls");
             listado.ordenadosGoles(0);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 12:
             system("cls");
             listado.ordenadosGoles(1);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 13:
             system("cls");
             listado.ordenadosAsistencias(0);
+            listado.mostrarJugadores();
             system("pause");
             break;
         case 14:
             system("cls");
             listado.ordenadosAsistencias(1);
+            listado.mostrarJugadores();
             system("pause");
             break;
         }
@@ -521,6 +539,7 @@ void Menu::menuCompetencias(){
             reg = listado.buscarCompetencia(nombre);
             if (reg.getCompetencia() != "") {
                 partido.asignarCompetencia(reg);
+                system("pause");
                 partido.mostrarPartido();
             }
             system("pause");

@@ -3,10 +3,8 @@
 #include <cstring>
 using namespace std;
 
-// Constructor
 Equipo::Equipo(){
     nombre="Undefined";
-    ///directorTecnico = "Undefinded"
     plantel=-1;
 }
 
@@ -15,8 +13,8 @@ void Equipo::cargar(){
     getline(cin,nombre);
     cout << "Ingrese cantidad de jugadores: ";
     cin >> plantel;
-    while(plantel<=0){
-        cout << "Reingrese cantidad de jugadores: ";
+    while(plantel<=0 && plantel>100){
+        cout << "Cantidad de Jugadores incorrecta (1-100): ";
         cin >> plantel;
     }
     cin.ignore();

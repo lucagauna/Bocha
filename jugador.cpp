@@ -3,7 +3,6 @@
 #include <cstring>
 using namespace std;
 
-// Constructor
 Jugador::Jugador(){
     strcpy(nombre, "Undefined");
     strcpy(equipo, "Undefined");
@@ -40,7 +39,7 @@ void Jugador::cargar(){
 
         }
         if(!verificacionJugador){
-            cout<<"Reingrese el Nombre del Jugador: ";
+            cout<<"Nombre del Jugador no ingresado en el sistema: ";
             cin.getline(nombre,49);
         }
     }
@@ -49,7 +48,7 @@ void Jugador::cargar(){
     cin >> idJugador;
 
     if(idJugador<=0){
-        cout << "Reingrese el ID del Jugador: ";
+        cout << "ID del Jugador incorrecta, menor a 1 (1-En Adelante): ";
         cin >> idJugador;
     }
 
@@ -70,7 +69,7 @@ void Jugador::cargar(){
 
         }
         if(!verificacionEquipo){
-            cout<<"Reingrese el equipo del Jugador: ";
+            cout<<"Equipo del Jugador incorrecto o inexistente en el sistema: ";
             cin.getline(equipo,49);
         }
     }
@@ -80,8 +79,8 @@ void Jugador::cargar(){
     cin>>edad;
     cin.ignore();
 
-    while(edad<1||edad>99){
-        cout<<"Reingrese la edad del jugador: ";
+    while(edad<15||edad>50){
+        cout<<"Edad del jugador imposible (15-50): ";
         cin>>edad;
         cin.ignore();
     }
@@ -89,35 +88,35 @@ void Jugador::cargar(){
     cout<<"Ingrese la posicion del Jugador: ";
     cin.getline(posicion,49);
     while(strcmp(posicion,"Delantero")!=0&&strcmp(posicion,"Mediocampista")!=0&&strcmp(posicion,"Defensor")!=0&&strcmp(posicion,"Arquero")!=0){
-        cout<<"Reingrese la posicion del Jugador: ";
+        cout<<"Posicion del Jugador incorrecta (Delantero, Mediocampista, Defensor, Arquero): ";
         cin.getline(posicion,49);
     }
 
     cout<<"Ingrese la dorsal del jugador: ";
     cin>>numero;
     while(numero<1||numero>99){
-        cout<<"Reingrese la dorsal del jugador: ";
+        cout<<"Dorsal del jugador incorrecta (1-99): ";
         cin>>numero;
     }
 
     cout<<"Ingrese los goles anotados por el jugador: ";
     cin>>goles;
     while(goles<0){
-        cout<<"Reingrese los goles anotados por el jugador: ";
+        cout<<"Goles anotados por el jugador incorrectos (0-En Adelante): ";
         cin>>goles;
     }
 
     cout<<"Ingrese las asistencias realizadas por el jugador: ";
     cin>>asistencias;
     while(asistencias<0){
-        cout<<"Reingrese las asistencias realizadas por el jugador: ";
+        cout<<"Asistencias anotadas por el jugador incorrectos (0-En Adelante): ";
         cin>>asistencias;
 
     }
 
 
 }
-// Getters
+
 int Jugador::getIdJugador(){
     return idJugador;
 }
@@ -150,7 +149,6 @@ int Jugador::getAsistencias(){
     return asistencias;
 }
 
-// Setters
 void Jugador::setIdJugador(int ID){
     idJugador=ID;
 }
@@ -849,4 +847,3 @@ bool archivoJugador::ordenadosAsistencias(bool valor){
 
     return 1;
 }
-

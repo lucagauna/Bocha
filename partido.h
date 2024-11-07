@@ -2,6 +2,8 @@
 #define PARTIDO_H_INCLUDED
 
 #include "competencia.h"
+#include "jugador.h"
+#include "equipos.h"
 #include <iostream>
 #include <string>
 

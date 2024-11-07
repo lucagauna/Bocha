@@ -53,8 +53,6 @@ void Partido::asignarCompetencia(Competencia comp) {
     srand(time(nullptr));
     goles[0] = rand() % 5;
     goles[1] = rand() % 5;
-
-     system("cls");
 }
 
 string Partido::getEquipo1(){
@@ -89,6 +87,9 @@ void Partido::setFecha(int valor){
 }
 
 void Partido::mostrarPartido(){
+    archivoEquipo listado("Equipos.dat");
+    Equipo reg;
+    int indice;
     cout << "Fecha: " << fecha << endl;
     cout << "Equipo 1: " << equipo1 << " | Goles: " << goles[0] << endl;
     cout << "Equipo 2: " << equipo2 << " | Goles: " << goles[1] << endl;
@@ -102,4 +103,22 @@ void Partido::mostrarPartido(){
     else{
         cout << "Resultado: Empate" << endl;
     }
+
+    reg = listado.buscarEquipo(equipo1.c_str());
+    ///reg.mostrarEquipo();
+
+    cout << "Goles del equipo " << equipo1 << ": " <<  endl;
+    for(int i=0; i<goles[0]; i++){
+        indice = rand() % reg.getPlantel();
+        cout << reg.getJugador(indice) <<endl;
+    }
+
+    reg = listado.buscarEquipo(equipo2.c_str());
+
+    cout << "Goles del equipo " << equipo2 << ": " << endl;
+    for(int i=0; i<goles[1]; i++){
+        indice = rand() % reg.getPlantel();
+        cout << reg.getJugador(indice) <<endl;
+    }
+
 }
