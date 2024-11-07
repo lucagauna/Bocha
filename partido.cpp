@@ -55,9 +55,6 @@ void Partido::asignarCompetencia(Competencia comp) {
     goles[1] = rand() % 5;
 
      system("cls");
-    cout << "Fecha: " << fecha << endl;
-    cout << "Equipo 1: " << equipo1 << " | Goles: " << goles[0] << endl;
-    cout << "Equipo 2: " << equipo2 << " | Goles: " << goles[1] << endl;
 }
 
 string Partido::getEquipo1(){
